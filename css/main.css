@@ -26,3 +26,12 @@ h1 {
     align-items: center;
     padding: 10% 0;
 }
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+    grid-template-rows: 100px 100px 100px;
+    grid-gap: 0.8em;
+    align-items: center;
+    justify-content: center;
+}

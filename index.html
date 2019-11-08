@@ -19,32 +19,56 @@
                 <div class="col-12">
                     <h1 class="game-title">TIC TAC TOE</h1>
                 </div>
-                <div class="col-6">
+
+                <div id="player1" class="col-12 col-lg-6">
                     Player 1
                 </div>
-                <div class="col-6">
+                <div id="player2" class="col-12 col-lg-6">
                     Player 2
                 </div>
+
                 <div class="col-12">
-                    <div>START</div>
-                    <div>Game description.</div>
+                    <button class="btn">PLAY GAME</button>
                 </div>
             </div>
         </div>
 
         <div id="gameBoard" class="container text-center">
             <div class="row">
-                <div class="col-4">
+                <div class="col-12">
+                    <h1 class="game-title">TIC TAC TOE</h1>
+                </div>
+
+                <div id="player1" class="col-4">
                     Player 1
                 </div>
-                <div class="col-4">
-                    GAME BOARD
+                <div class="col-4 score-turn">
+                    <div id="score">Score</div>
+                    <div id="turn">Turn</div>
                 </div>
-                <div class="col-4">
+                <div id="player2" class="col-4">
                     Player 2
                 </div>
-                <div class="col-12">
-                    <div>Game description.</div>
+
+                <div id="gameGrid" class="col-12">
+                    <div class="grid-container">
+                        <div class="item item-11">11</div>
+                        <div class="item item-12">12</div>
+                        <div class="item item-13">13</div>
+                        <div class="item item-21">21</div>
+                        <div class="item item-22">22</div>
+                        <div class="item item-23">23</div>
+                        <div class="item item-31">31</div>
+                        <div class="item item-32">32</div>
+                        <div class="item item-33">33</div>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <button id="restartGame" class="btn">RESTART GAME</button>
+                </div>
+                <div class="col-6">
+                    <button id="newGame" class="btn">NEW GAME</button>
                 </div>
             </div>
         </div>

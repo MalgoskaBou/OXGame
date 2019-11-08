@@ -1,0 +1,19 @@
+body {
+    background-color: #232637;
+    color: #D0D0D0;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+}
+
+h1 {
+    color: #FD8328;
+    font-style: normal;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.btn {
+    background-color: #FD8328;
+    color: #FFFFFF;
+}

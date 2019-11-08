@@ -17,3 +17,12 @@ h1 {
     background-color: #FD8328;
     color: #FFFFFF;
 }
+
+#startScreen,
+#gameBoard {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10% 0;
+}

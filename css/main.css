@@ -27,11 +27,33 @@ h1 {
     padding: 10% 0;
 }
 
+#gameGrid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .grid-container {
+    width: 360px;
+    height: 360px;
     display: grid;
-    grid-template-columns: 100px 100px 100px;
-    grid-template-rows: 100px 100px 100px;
-    grid-gap: 0.8em;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    padding: 15px;
+    grid-gap: 10px;
     align-items: center;
     justify-content: center;
+    border-radius: 8px;
+
+    background-color: #254a54;
+    background-size: contain;
+}
+
+.grid-container .item {
+    display: flex;
+    background-color: #276268;
+    height: 100%;
+    width: 100%;
+    border-radius: 8px;
+
 }

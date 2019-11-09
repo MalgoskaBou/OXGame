@@ -1,15 +1,24 @@
-// informs which player's turn it is; 
-// 0 -> player 1 (X)
-// 1 -> player 2 (O)
-let currentTurn = Math.floor(Math.random() * 2);
-
-// Get appropriate board fields from HTML, 
-// variable boardFields holds a NodeList!
+// Get appropriate board fields from HTML, variable holds a NodeList!
 const boardFields = document.querySelectorAll('.item');
 
-// Function adding the right figure in the right box depending on the current turn
+// Function checks if board field given as an argument is already taken
+const takenField = function (field) {
+    return field.classList.contains('icon-x') || field.classList.contains('icon-o');
+}
+
+// field is available function adds the right figure on a board field depending on the current turn
 const pickField = function (e) {
-    e.target.classList.add(Boolean(currentTurn) ? '.icon-0' : '.icon-x');
+    if (!takenField(e.target)) {
+        e.target.classList.add(Boolean(currentTurn) ? 'icon-o' : 'icon-x');
+        changeTurn();
+    }
+}
+
+
+
+let currentTurn = Math.floor(Math.random() * 2);
+const changeTurn = function () {
+    currentTurn = currentTurn ? --currentTurn : ++currentTurn;
 }
 
 // Add listening on every board field

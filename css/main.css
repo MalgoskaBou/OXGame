@@ -1,0 +1,150 @@
+body {
+    background-color: #232637;
+    color: #D0D0D0;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 0.85rem;
+}
+
+.game-title {
+    color: #FD8328;
+    font-style: normal;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding-bottom: 5%;
+}
+
+.row {
+    width: 360px;
+}
+
+.btn {
+    color: #FFFFFF;
+    width: 100%;
+    font-size: 0.85rem;
+}
+
+.btn-play {
+    width: 50%;
+}
+
+.btn:hover {
+    color: #FFFFFF;
+}
+
+.btn-bgcolor {
+    background-color: #FD8328;
+}
+
+#startScreen,
+#gameBoard {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10% 0;
+    width: 100%;
+}
+
+@media screen and (min-width: 441px) {
+    #startScreen,
+    #gameBoard {
+        width: 400px;
+    }
+}
+
+#gameGrid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3% 0 5% 0;
+}
+
+.grid-container {
+    width: 360px;
+    height: 360px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    padding: 15px;
+    grid-gap: 10px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+
+    background-color: #254a54;
+    background-size: contain;
+}
+
+.grid-container .item {
+    display: flex;
+    background-color: #276268;
+    height: 100%;
+    width: 100%;
+    border-radius: 8px;
+
+}
+
+.item,
+.name-icon {
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.icon-o {
+    background-image: url(../img/icon-o.png);
+    background-size: 70%;
+}
+
+.icon-x {
+    background-image: url(../img/icon-x.png);
+    background-size: 60%;
+}
+
+.name-icon {
+    background-size: 12px;
+    background-position: left;
+}
+
+.player,
+.score-turn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.score-turn {
+    padding: 0;
+}
+
+#score {
+}
+
+.player-name {
+    text-align: left;
+    padding-left: 5%;
+    color: #FBC375;
+}
+
+.grid-container-two {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 100%;
+}
+
+.avatar {
+    width: 48px;
+    height: 48px;
+    background-color: #D0D0D0;
+    border-radius: 100%;
+    margin: 5% 0;
+    background-size: cover;
+}
+
+#score {
+    color: #b5ead3;
+    font-weight: bold;
+    font-size: 1.1rem;
+}

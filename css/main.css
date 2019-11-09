@@ -58,7 +58,8 @@ h1 {
 
 }
 
-.item {
+.item,
+.name-icon {
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -71,4 +72,9 @@ h1 {
 .icon-x {
     background-image: url(../img/icon-x.png);
     background-size: 60%;
+}
+
+.name-icon {
+    background-size: 10px;
+    background-position: left;
 }

@@ -76,5 +76,16 @@ h1 {
 
 .name-icon {
     background-size: 10px;
-    background-position: left;
+    background-position: right;
+}
+
+.player-name {
+    text-align: left;
+    padding-left: 5%;
+}
+
+.grid-container-two {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 100%;
 }

@@ -140,7 +140,7 @@ body {
     background-color: #D0D0D0;
     border-radius: 100%;
     margin: 5% 0;
-    background-size: contain;
+    background-size: cover;
 }
 
 #score {

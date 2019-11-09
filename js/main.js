@@ -6,9 +6,9 @@ const takenField = function (field) {
     return field.classList.contains('icon-x') || field.classList.contains('icon-o');
 }
 
-// Function shows a message if just clicked board field is already taken
-const takenFieldAlert = function () {
-    alert('This field is already taken. Choose another one.')
+// Function shows a message given as an argument
+const showAlert = function (message) {
+    alert(message)
 }
 
 // If field is available function adds the right figure on a board field depending on the current turn
@@ -16,7 +16,7 @@ const pickField = function (e) {
     if (!takenField(e.target)) {
         e.target.classList.add(Boolean(currentTurn) ? 'icon-o' : 'icon-x');
         changeTurn();
-    } else takenFieldAlert()
+    } else showAlert('This field is already taken. Choose another one.')
 }
 
 

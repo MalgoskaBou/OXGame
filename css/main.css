@@ -14,8 +14,20 @@ h1 {
 }
 
 .btn {
-    background-color: #FD8328;
     color: #FFFFFF;
+    width: 100%;
+}
+
+.btn-play {
+    width: 50%;
+}
+
+.btn:hover {
+    color: #FFFFFF;
+}
+
+.btn-bgcolor {
+    background-color: #FD8328;
 }
 
 #startScreen,

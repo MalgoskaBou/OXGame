@@ -25,12 +25,21 @@ h1 {
     justify-content: center;
     align-items: center;
     padding: 10% 0;
+    width: 100%;
+}
+
+@media screen and (min-width: 441px) {
+    #startScreen,
+    #gameBoard {
+        width: 400px;
+    }
 }
 
 #gameGrid {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 3% 0 5% 0;
 }
 
 .grid-container {

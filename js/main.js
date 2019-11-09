@@ -15,7 +15,7 @@ const pickField = function (e) {
 }
 
 
-
+// written just to test if everything is working as expected ;)
 let currentTurn = Math.floor(Math.random() * 2);
 const changeTurn = function () {
     currentTurn = currentTurn ? --currentTurn : ++currentTurn;

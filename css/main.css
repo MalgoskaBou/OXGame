@@ -7,11 +7,12 @@ body {
     font-size: 0.85rem;
 }
 
-h1 {
+.game-title {
     color: #FD8328;
     font-style: normal;
     font-weight: bold;
     text-transform: uppercase;
+    padding-bottom: 5%;
 }
 
 .row {

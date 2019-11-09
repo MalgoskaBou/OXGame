@@ -106,6 +106,12 @@ h1 {
     background-position: right;
 }
 
+.player {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .player-name {
     text-align: left;
     padding-left: 5%;
@@ -116,4 +122,12 @@ h1 {
     display: grid;
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 100%;
+}
+
+.avatar {
+    width: 48px;
+    height: 48px;
+    background-color: #D0D0D0;
+    border-radius: 100%;
+    margin: 5% 0;
 }

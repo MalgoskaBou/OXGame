@@ -57,3 +57,18 @@ h1 {
     border-radius: 8px;
 
 }
+
+.item {
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.icon-o {
+    background-image: url(../img/icon-o.png);
+    background-size: 70%;
+}
+
+.icon-x {
+    background-image: url(../img/icon-x.png);
+    background-size: 60%;
+}

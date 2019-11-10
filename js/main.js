@@ -10,7 +10,46 @@ const validField = function (field) {
 
 // Function shows a message given as an argument
 const showAlert = function (message) {
-    alert(message)
+
+    // Create new html <div> element
+    const alertBox = document.createElement('div');
+    // Add css class
+    alertBox.className = 'alert';
+    // Add css rules
+    alertBox.style.position = 'fixed';
+    alertBox.style.margin = '0';
+    alertBox.style.padding = '0';
+    alertBox.style.background = 'rgba(181, 234, 211, 0.8)';
+    alertBox.style.color = 'rgb(35, 38, 55)';
+    alertBox.style.fontSize = '1.8rem';
+    alertBox.style.lineHeight = '1.5';
+    alertBox.style.fontFamily = '"Roboto", sans-serif';
+    alertBox.style.textAlign = 'center';
+    if (window.innerWidth < 600) {
+        alertBox.style.width = '100vw';
+        alertBox.style.height = '100vh';
+        alertBox.style.top = '0';
+        alertBox.style.left = '0';
+    } else {
+        alertBox.style.top = '50%';
+        alertBox.style.left = '50%';
+        alertBox.style.transform = 'translate(-50%, -50%)';
+        alertBox.style.width = '400px';
+        alertBox.style.height = '400px';
+    }
+    //  flexbox rules
+    alertBox.style.display = 'flex';
+    alertBox.style.justifyItems = 'center';
+    alertBox.style.alignItems = 'center'
+    // Add content
+    alertBox.innerHTML = `<p>${message}</p>`;
+    // Add new element to body
+    document.body.appendChild(alertBox);
+
+    // Add function
+    alertBox.onclick = function () {
+        document.body.removeChild(alertBox);
+    }
 }
 
 // If field is available function adds the right figure on a board field depending on the current turn

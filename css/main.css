@@ -15,8 +15,12 @@ body {
     padding-bottom: 5%;
 }
 
-.row {
+#gameBoard > .row {
     width: 360px;
+}
+
+#startScreen > .row {
+    width: 600px;
 }
 
 .btn {
@@ -26,7 +30,7 @@ body {
 }
 
 .btn-play {
-    width: 50%;
+    width: 200px;
 }
 
 .btn:hover {
@@ -48,7 +52,6 @@ body {
 }
 
 @media screen and (min-width: 441px) {
-    #startScreen,
     #gameBoard {
         width: 400px;
     }
@@ -147,4 +150,9 @@ body {
     color: #b5ead3;
     font-weight: bold;
     font-size: 1.1rem;
+}
+
+.player-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }

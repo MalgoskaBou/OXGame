@@ -45,6 +45,11 @@ body {
     background-color: #FD8328;
 }
 
+.new-game-description {
+    padding-top: 5px;
+    font-size: 0.8rem;
+}
+
 #startScreen,
 #gameBoard {
     height: 100vh;

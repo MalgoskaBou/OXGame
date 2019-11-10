@@ -104,6 +104,10 @@ body {
     background-position: center;
 }
 
+.item {
+    cursor: pointer;
+}
+
 .icon-o {
     background-image: url(../img/icon-o.png);
     background-size: 70%;

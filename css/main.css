@@ -157,8 +157,10 @@ body {
     background-position: center;
 }
 
-.avatars .avatar:hover {
-    border-color: #FD8328;
+.avatars .avatar:hover,
+.avatars .avatar:active,
+.avatars .avatar:focus {
+    border: solid #FD8328;
     border-width: 2px;
     cursor: pointer;
 }

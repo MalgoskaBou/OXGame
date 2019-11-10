@@ -202,8 +202,21 @@ input {
     margin: 4.5px 0;
 }
 
-input:active {
-    border: none;
+textarea:hover,
+input:hover,
+textarea:active,
+input:active,
+textarea:focus,
+input:focus,
+button:focus,
+button:active,
+button:hover,
+label:focus,
+.btn:active,
+.btn.active
+{
+    outline: none;
+    box-shadow: none;
 }
 
 .player-field {

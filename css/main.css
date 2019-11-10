@@ -147,7 +147,14 @@ body {
     background-color: #D0D0D0;
     border-radius: 100%;
     margin: 5% 0;
-    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.avatars .avatar:hover {
+    border-color: #FD8328;
+    border-width: 2px;
+    cursor: pointer;
 }
 
 #score {
@@ -185,4 +192,23 @@ input:active {
 
 .player-field {
     text-align: left;
+}
+
+.avatar-1 {
+    background-image: url(../img/shrimp.png);
+}
+.avatar-2 {
+    background-image: url(../img/unicorn.png);
+}
+.avatar-3 {
+    background-image: url(../img/fish.png);
+}
+.avatar-4 {
+    background-image: url(../img/cat.png);
+}
+.avatar-5 {
+    background-image: url(../img/dog.png);
+}
+.avatar-6 {
+    background-image: url(../img/elephant.png);
 }

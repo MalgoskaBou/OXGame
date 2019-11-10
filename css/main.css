@@ -157,8 +157,10 @@ body {
     background-position: center;
 }
 
-.avatars .avatar:hover {
-    border-color: #FD8328;
+.avatars .avatar:hover,
+.avatars .avatar:active,
+.avatars .avatar:focus {
+    border: solid #FD8328;
     border-width: 2px;
     cursor: pointer;
 }
@@ -194,13 +196,14 @@ body {
 input {
     display: block;
     width: 100%;
-    height: 48px;
+    height: 45px;
     box-sizing: border-box;
     border-radius: 8px;
     background-color: #FFFFFF;
     padding: 0 10px;
     border: none;
-    margin: 4.5px 0;
+    margin: 6px 0;
+    
 }
 
 textarea:hover,

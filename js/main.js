@@ -1,6 +1,17 @@
 // Get appropriate board fields from HTML, variable holds a NodeList!
 const boardFields = document.querySelectorAll('.item');
 
+// Function checks if given names are valid. If both are, it returns true. If at least is't, it returns false.
+const validNames = function (name1, name2) {
+    if (name1.length >= 3 && name1.length <= 10) {
+        if (name2.length >= 3 && name2.length <= 10) return true;
+        showAlert(`Second player's name is incorrect. Enter name between 3 and 10 letters long.`);
+        return false;
+    }
+    showAlert(`First player's name is incorrect. Enter name between 3 and 10 letters long.`);
+    return false;
+}
+
 // Function checks if board field given as an argument is already taken
 const takenField = function (field) {
     return field.classList.contains('icon-x') || field.classList.contains('icon-o');

@@ -1,7 +1,7 @@
 // Get appropriate board fields from HTML, variable holds a NodeList!
 const boardFields = document.querySelectorAll('.item');
 
-// Function checks if given names are valid. If both are, it returns true. If at least is't, it returns false.
+// Function checks if given names are valid. If both are, it returns true. If at least one is't, it returns false.
 const validNames = function (name1, name2) {
     if (name1.length >= 3 && name1.length <= 10) {
         if (name2.length >= 3 && name2.length <= 10) return true;

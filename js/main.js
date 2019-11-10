@@ -8,7 +8,7 @@ const takenField = function (field) {
 
 // If field is available function adds the right figure on a board field depending on the current turn
 const pickField = function (e) {
-    if (!takenField(e.target)) {
+    if (validField(e.target)) {
         e.target.classList.add(Boolean(currentTurn) ? 'icon-o' : 'icon-x');
         changeTurn();
     }

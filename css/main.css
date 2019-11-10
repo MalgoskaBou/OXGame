@@ -16,7 +16,15 @@ body {
 }
 
 .row {
+    justify-content: center;
+}
+
+#gameBoard > .row {
     width: 360px;
+}
+
+#startScreen > .row {
+    width: 700px;
 }
 
 .btn {
@@ -26,7 +34,7 @@ body {
 }
 
 .btn-play {
-    width: 50%;
+    width: 200px;
 }
 
 .btn:hover {
@@ -35,6 +43,11 @@ body {
 
 .btn-bgcolor {
     background-color: #FD8328;
+}
+
+.new-game-description {
+    padding-top: 5px;
+    font-size: 0.8rem;
 }
 
 #startScreen,
@@ -48,7 +61,6 @@ body {
 }
 
 @media screen and (min-width: 441px) {
-    #startScreen,
     #gameBoard {
         width: 400px;
     }
@@ -119,9 +131,6 @@ body {
     padding: 0;
 }
 
-#score {
-}
-
 .player-name {
     text-align: left;
     padding-left: 5%;
@@ -140,11 +149,92 @@ body {
     background-color: #D0D0D0;
     border-radius: 100%;
     margin: 5% 0;
-    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.avatars .avatar:hover {
+    border-color: #FD8328;
+    border-width: 2px;
+    cursor: pointer;
 }
 
 #score {
     color: #b5ead3;
     font-weight: bold;
     font-size: 1.1rem;
+}
+
+.player-container {
+    display: grid;
+    grid-template-columns: 90px 190px;
+    max-width: 350px;
+    padding-bottom: 20%;
+    font-size: 0.8rem;
+}
+
+@media screen and (min-width: 768px) {
+    #player1.player-container {
+        justify-content: left;
+    }
+    #player2.player-container {
+        justify-content: right;
+    }
+}
+
+.avatars {
+    display: flex;
+    justify-content: space-between;
+}
+
+input {
+    display: block;
+    width: 100%;
+    height: 48px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    padding: 0 10px;
+    border: none;
+    margin: 4.5px 0;
+}
+
+textarea:hover,
+input:hover,
+textarea:active,
+input:active,
+textarea:focus,
+input:focus,
+button:focus,
+button:active,
+button:hover,
+label:focus,
+.btn:active,
+.btn.active
+{
+    outline: none;
+    box-shadow: none;
+}
+
+.player-field {
+    text-align: left;
+}
+
+.avatar-1 {
+    background-image: url(../img/shrimp.png);
+}
+.avatar-2 {
+    background-image: url(../img/unicorn.png);
+}
+.avatar-3 {
+    background-image: url(../img/fish.png);
+}
+.avatar-4 {
+    background-image: url(../img/cat.png);
+}
+.avatar-5 {
+    background-image: url(../img/dog.png);
+}
+.avatar-6 {
+    background-image: url(../img/elephant.png);
 }

@@ -110,5 +110,27 @@ const web = {
       window.scrollTo(0, window.innerHeight);
     };
     play.addEventListener("click", run);
-  } // <-- end of init function
+    //pick avatar
+    const avatar1 = document.querySelectorAll('#avatars1');
+    const avatar2 = document.querySelectorAll('#avatars2');
+    avatar1.forEach(avatar => avatar.addEventListener('click', pickAvatar1));
+    avatar2.forEach(avatar => avatar.addEventListener('click', pickAvatar2));
+    function pickAvatar1(e){
+      let img1 = document.getElementById('avatars1').getElementsByClassName('avatar-1');
+      let img2 = document.getElementById('avatars1').getElementsByClassName('avatar-2');
+      let img3 = document.getElementById('avatars1').getElementsByClassName('avatar-3');
+      let userImg = document.getElementById('player-1-avatar');
+      userImg.classList.add(e.target.classList.item(1));
+      //console.log("clicked on:" + e.target.classList);
+    };
+    function pickAvatar2(e){
+      let img1 = document.getElementById('avatars2').getElementsByClassName('avatar-4');
+      let img2 = document.getElementById('avatars2').getElementsByClassName('avatar-5');
+      let img3 = document.getElementById('avatars2').getElementsByClassName('avatar-6');
+      let userImg = document.getElementById('player-2-avatar');
+      userImg.classList.add(e.target.classList.item(1));
+    };
+    
+    } // <-- end of init function
 }; // <-- end of web obj.
+

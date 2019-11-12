@@ -115,4 +115,11 @@ const web = {
 
     //=======================MAGDA
 
-    
+    let newGame = document.getElementById("newGame");
+    let restartGame = document.getElementById("restartGame");
+
+    let startNew = function () {
+      window.scrollTo(0, 0);
+    }
+
+    newGame.addEventListener("click", startNew);

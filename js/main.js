@@ -95,13 +95,21 @@ const web = {
 
     //=======================PIOTREK
 
-    let p1inp = document.getElementById("player1Name");
-    let p2inp = document.getElementById("player2Name");
-    let play = document.getElementById("play");
-    let turn = document.getElementById("turn");
-    let p1 = document.getElementsByClassName("player-1-name")[0];
-    let p2 = document.getElementsByClassName("player-2-name")[0];
-    let run = function() {
+    const p1inp = document.getElementById("player1Name");
+    const p2inp = document.getElementById("player2Name");
+    const play = document.getElementById("play");
+    const turn = document.getElementById("turn");
+    const p1 = document.getElementsByClassName("player-1-name")[0];
+    const p2 = document.getElementsByClassName("player-2-name")[0];
+    const run = function () {
+      if (!validName(p1inp.value)) {
+        showNameAlert(p1inp);
+        return;
+      }
+      if (!validName(p2inp.value)) {
+        showNameAlert(p2inp);
+        return;
+      }
       p1.innerText = p1inp.value;
       p2.innerText = p2inp.value;
       let tab = [p1.innerText, p2.innerText];
@@ -109,14 +117,18 @@ const web = {
       turn.innerText = who;
       window.scrollTo(0, window.innerHeight);
     };
+
     play.addEventListener("click", run);
+    [p1inp, p2inp].forEach(input => input.addEventListener('focus', clearNameAlert));
+
+    //=======================IWONA & ŻENIA
     //pick avatar
     const avatar1 = document.querySelectorAll('#avatars1');
     const avatar2 = document.querySelectorAll('#avatars2');
     avatar1.forEach(avatar => avatar.addEventListener('click', pickAvatar1));
     avatar2.forEach(avatar => avatar.addEventListener('click', pickAvatar2));
 
-    function pickAvatar1(e){
+    function pickAvatar1(e) {
       let img1 = document.getElementById('avatars1').getElementsByClassName('avatar-1');
       let img2 = document.getElementById('avatars1').getElementsByClassName('avatar-2');
       let img3 = document.getElementById('avatars1').getElementsByClassName('avatar-3');

@@ -28,25 +28,29 @@ const web = {
 
     // Shows alert under invalid player's name.
     const showNameAlert = function (nameInput) {
+      let playerBox = nameInput.parentNode.parentNode;
+      if (playerBox.querySelector('.alert')) return;
+
       const alertBox = document.createElement('div');
       alertBox.innerHTML = '<p>Enter valid name between 3 and 10 characters.</p>';
       alertBox.className = 'alert';
-      let playerBox = nameInput.parentNode.parentNode;
       playerBox.appendChild(alertBox);
     };
 
     // Removes invalid name alert after clicking in name input.
-    const clearNameAlert = function (e) {
-      let playerBox = e.target.parentNode.parentNode;
+    const clearNameAlert = function (nameInput) {
+      let playerBox = nameInput.parentNode.parentNode;
       let alertBox = playerBox.querySelector('.alert');
-      playerBox.removeChild(alertBox);
-    }
+      if (alertBox) playerBox.removeChild(alertBox);
+    };
+
+    // Locks game board fields after win or draw.
+    const lockBoard = function () {};
 
 
     // EVENT LISTENERS
     // Add listening on every board field
     boardFields.forEach(field => field.addEventListener("click", pickField));
-    // [p1inp, p2inp].forEach(input => input.addEventListener('focus', clearNameAlert));
 
     //=======================IWONA
 
@@ -81,21 +85,24 @@ const web = {
       if (!validName(p1inp.value)) {
         showNameAlert(p1inp);
         return;
-      }
+      };
+      clearNameAlert(p1inp);
+
       if (!validName(p2inp.value)) {
         showNameAlert(p2inp);
         return;
-      }
-      p1.innerText = p1inp.value;
-      p2.innerText = p2inp.value;
-      let tab = [p1.innerText, p2.innerText];
-      let who = tab[Math.floor(Math.random() * 2)];
-      turn.innerText = who;
-      window.scrollTo(0, window.innerHeight);
+      };
+      clearNameAlert(p2inp);
+
+      // p1.innerText = p1inp.value;
+      // p2.innerText = p2inp.value;
+      // let tab = [p1.innerText, p2.innerText];
+      // let who = tab[Math.floor(Math.random() * 2)];
+      // turn.innerText = who;
+      // window.scrollTo(0, window.innerHeight);
     };
 
     play.addEventListener("click", run);
-    [p1inp, p2inp].forEach(input => input.addEventListener('focus', clearNameAlert));
 
     //=======================IWONA & ŻENIA
     //pick avatar
@@ -116,10 +123,10 @@ const web = {
 
       let playerImg1 = document.getElementById('playerOne');
       playerImg1.classList.remove(lastClass);
-      playerImg1.classList.add(e.target.classList.item(1));      
+      playerImg1.classList.add(e.target.classList.item(1));
     }
 
-    function pickAvatar2(e){
+    function pickAvatar2(e) {
       let img1 = document.getElementById('avatars2').getElementsByClassName('avatar-4');
       let img2 = document.getElementById('avatars2').getElementsByClassName('avatar-5');
       let img3 = document.getElementById('avatars2').getElementsByClassName('avatar-6');
@@ -133,6 +140,5 @@ const web = {
       playerImg2.classList.remove(lastClass);
       playerImg2.classList.add(e.target.classList.item(1));
     };
-    } // <-- end of init function
+  } // <-- end of init function
 }; // <-- end of web obj.
-

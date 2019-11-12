@@ -230,19 +230,36 @@ label:focus,
 .avatar-1 {
     background-image: url(../img/shrimp.png);
 }
+
 .avatar-2 {
     background-image: url(../img/unicorn.png);
 }
+
 .avatar-3 {
     background-image: url(../img/fish.png);
 }
+
 .avatar-4 {
     background-image: url(../img/cat.png);
 }
+
 .avatar-5 {
     background-image: url(../img/dog.png);
 }
+
 .avatar-6 {
     background-image: url(../img/elephant.png);
 }
-.empty{}
+
+.empty {}
+
+.alert {
+    position: absolute;
+    top: 150px;
+    right: 0;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    padding: 0;
+    text-align: left;
+    color: #FD8328;
+}

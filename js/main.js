@@ -126,7 +126,7 @@ const web = {
             if (validField(e.target)) {
                 e.target.classList.add(Boolean(currentTurn) ? "icon-x" : "icon-o");
                 changeTurn();
-                winOrDraw();
+                // winOrDraw();
             }
         };
 

@@ -19,11 +19,11 @@ body {
     justify-content: center;
 }
 
-#gameBoard > .row {
+#gameBoard>.row {
     width: 360px;
 }
 
-#startScreen > .row {
+#startScreen>.row {
     width: 700px;
 }
 
@@ -183,6 +183,7 @@ body {
     #player1.player-container {
         justify-content: left;
     }
+
     #player2.player-container {
         justify-content: right;
     }
@@ -203,7 +204,7 @@ input {
     padding: 0 10px;
     border: none;
     margin: 6px 0;
-    
+
 }
 
 textarea:hover,
@@ -217,8 +218,7 @@ button:active,
 button:hover,
 label:focus,
 .btn:active,
-.btn.active
-{
+.btn.active {
     outline: none;
     box-shadow: none;
 }
@@ -250,9 +250,6 @@ label:focus,
 .avatar-6 {
     background-image: url(../img/elephant.png);
 }
-
-.empty {}
-
 .alert {
     position: absolute;
     top: 150px;
@@ -263,3 +260,4 @@ label:focus,
     text-align: left;
     color: #FD8328;
 }
+

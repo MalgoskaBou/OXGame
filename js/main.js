@@ -1,5 +1,47 @@
 const web = {
   init: function () {
+    /*
+    //=======================WIN-OR-DRAW
+    const winOrDraw = function () {
+      const winningCombinations = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+      ]
+      // Both arrays holds indexes of board fields on which players clicked.
+      const xMoves = [];
+      const oMoves = [];
+      // Search through boardField. If we find field with X-sign or O-sign we take it's index and push it to array with player moves.
+      boardFields.forEach((field, index) => {
+        if (field.classList.contains('icon-x')) {
+          xMoves.push(index);
+        } else if (field.classList.contains('icon-o')) {
+          oMoves.push(index);
+        }
+      });
+      // Check if any array with players moves holds any winning combination.
+      winningCombinations.forEach(combination => {
+        if (combination.every(index => xMoves.includes(index))) {
+          lockBoard();
+          alert('Player X wins!');
+        } else if (combination.every(index => oMoves.includes(index))) {
+          lockBoard();
+          alert('Player O wins!');
+        }
+      })
+      // Check if all fields are taken. If so, it"s a draw.
+      if (xMoves.length + oMoves.length == boardFields.length) {
+        lockBoard();
+        alert('It\'s a draw!');
+      }
+    }
+    */
+
     //======================= DARIA
     // VARIABLES
     const boardFields = document.querySelectorAll(".item");
@@ -16,7 +58,7 @@ const web = {
     const pickField = function (e) {
       if (validField(e.target)) {
         e.target.classList.add(Boolean(currentTurn) ? "icon-o" : "icon-x");
-        // checkResult(); // remember to type proper function name!
+        // winOrDraw();
         changeTurn();
       }
     };
@@ -37,7 +79,7 @@ const web = {
       playerBox.appendChild(alertBox);
     };
 
-    // Removes invalid name alert after clicking in name input.
+    // Removes invalid name alert.
     const clearNameAlert = function (nameInput) {
       let playerBox = nameInput.parentNode.parentNode;
       let alertBox = playerBox.querySelector('.alert');
@@ -45,7 +87,9 @@ const web = {
     };
 
     // Locks game board fields after win or draw.
-    const lockBoard = function () {};
+    const lockBoard = function () {
+      boardFields.forEach(field => field.removeEventListener("click", pickField));
+    };
 
 
     // EVENT LISTENERS
@@ -94,12 +138,12 @@ const web = {
       };
       clearNameAlert(p2inp);
 
-      // p1.innerText = p1inp.value;
-      // p2.innerText = p2inp.value;
-      // let tab = [p1.innerText, p2.innerText];
-      // let who = tab[Math.floor(Math.random() * 2)];
-      // turn.innerText = who;
-      // window.scrollTo(0, window.innerHeight);
+      p1.innerText = p1inp.value;
+      p2.innerText = p2inp.value;
+      let tab = [p1.innerText, p2.innerText];
+      let who = tab[Math.floor(Math.random() * 2)];
+      turn.innerText = who;
+      window.scrollTo(0, window.innerHeight);
     };
 
     play.addEventListener("click", run);

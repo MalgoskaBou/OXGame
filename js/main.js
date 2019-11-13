@@ -114,18 +114,19 @@ const web = {
         const changeTurn = function (e) {
             if (currentTurn) {
                 currentTurn--;
-                turn.innerHTML = `It's ${p2inp.value}'s turn.`;
+                turn.innerHTML = `It's ${p1inp.value}'s turn.`;
             } else {
                 currentTurn++;
-                turn.innerHTML = `It's ${p1inp.value}'s turn.`;
+                turn.innerHTML = `It's ${p2inp.value}'s turn.`;
             }
         }
 
-        // If field is available function adds the right figure on the board field depending on the current turn.
+        // If field is available adds right figure on board field depending on the current turn.
         const pickField = function (e) {
             if (validField(e.target)) {
                 e.target.classList.add(Boolean(currentTurn) ? "icon-x" : "icon-o");
                 changeTurn();
+                // winOrDraw();
             }
         };
 

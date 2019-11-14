@@ -166,13 +166,16 @@ const web = {
         clickInformation(indexBox, indexPlyerBox);
         const result = checkBoard();
         if (result == "x winner") {
-          setTimeout(drawLine('012'), 500);
+          lockBoard();
+          setTimeout(drawLine('012'), 200);
           setTimeout(showWinnerX, 2000);
         } else if (result == "o winner") {
-          setTimeout(drawLine('012'), 500);
+          lockBoard();
+          setTimeout(drawLine('012'), 200);
           setTimeout(showWinnerO, 2000);
         } else {
           if (!emptyCellDetected()) {
+            lockBoard();
             setTimeout(showDraw, 2000);
           }
         }

@@ -152,15 +152,17 @@ const web = {
     // If field is available adds right figure on board field depending on the current turn.
     const pickField = function (e) {
       if (validField(e.target)) {
-        e.target.classList.add(Boolean(currentTurn) ? "icon-o" : "icon-x");
+        e.target.classList.add(currentTurn ? "icon-o" : "icon-x");
         //============== Ievgeniia
         let indexBox = e.target.classList.item(1);
         let indexPlyerBox = e.target.classList.item(2);
         clickInformation(indexBox, indexPlyerBox);
         const result = checkBoard();
         if (result == "x winner") {
+          setTimeout(drawLine('012'), 500);
           setTimeout(showWinnerX, 2000);
         } else if (result == "o winner") {
+          setTimeout(drawLine('012'), 500);
           setTimeout(showWinnerO, 2000);
         } else {
           if (!emptyCellDetected()) {

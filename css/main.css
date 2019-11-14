@@ -19,11 +19,11 @@ body {
     justify-content: center;
 }
 
-#gameBoard > .row {
+#gameBoard>.row {
     width: 360px;
 }
 
-#startScreen > .row {
+#startScreen>.row {
     width: 700px;
 }
 
@@ -150,7 +150,8 @@ body {
 .avatar {
     width: 48px;
     height: 48px;
-    background-color: #D0D0D0;
+    background-color: #fff;
+    border: 1px solid #D0D0D0;
     border-radius: 100%;
     margin: 5% 0;
     background-repeat: no-repeat;
@@ -183,6 +184,7 @@ body {
     #player1.player-container {
         justify-content: left;
     }
+
     #player2.player-container {
         justify-content: right;
     }
@@ -200,10 +202,9 @@ input {
     box-sizing: border-box;
     border-radius: 8px;
     background-color: #FFFFFF;
+    border: 1px solid #D0D0D0;
     padding: 0 10px;
-    border: none;
     margin: 6px 0;
-    
 }
 
 textarea:hover,
@@ -217,8 +218,7 @@ button:active,
 button:hover,
 label:focus,
 .btn:active,
-.btn.active
-{
+.btn.active {
     outline: none;
     box-shadow: none;
 }
@@ -228,20 +228,34 @@ label:focus,
 }
 
 .avatar-1 {
-    background-image: url(../img/shrimp.png);
+    background-image: url(../img/shrimp.svg);
+    background-size: 70%;
+    align-content: center;
 }
+
 .avatar-2 {
-    background-image: url(../img/unicorn.png);
+    background-image: url(../img/unicorn.svg);
+    background-size: 70%;
 }
+
 .avatar-3 {
-    background-image: url(../img/fish.png);
+    background-image: url(../img/fish.svg);
+    background-size: 70%;
 }
+
 .avatar-4 {
-    background-image: url(../img/cat.png);
+    background-image: url(../img/cat.svg);
+    background-size: 70%;
 }
+
 .avatar-5 {
-    background-image: url(../img/dog.png);
+    background-image: url(../img/dog.svg);
+    background-size: 70%;
 }
+
 .avatar-6 {
-    background-image: url(../img/elephant.png);
+    background-image: url(../img/mouse.svg);
+    background-size: 70%;
 }
+
+.empty {}

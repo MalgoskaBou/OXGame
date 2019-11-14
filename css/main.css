@@ -280,3 +280,25 @@ label:focus,
     border-radius: 8px;
     transform: translate(-50%, calc(-50%));
 }
+
+@media only screen and (max-width: 768px) {
+
+    /* For mobile phones */
+    [class*="col-"] {
+        width: 100%;
+    }
+}
+
+.btn-play:hover,
+.btn-restart:hover {
+    background-color: #FF9A50;
+
+}
+
+.btn-new-game:hover {
+    background-color: #3E4255;
+}
+
+.item:hover {
+    background-color: #447B80;
+}

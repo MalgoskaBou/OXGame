@@ -95,15 +95,19 @@ const web = {
         return;
       };
       clearNameAlert(p1inp);
+
       if (!validName(p2inp.value)) {
         showNameAlert(p2inp);
         return;
       };
       clearNameAlert(p2inp);
+
       name1.innerText = p1inp.value;
       name2.innerText = p2inp.value;
+
       currentTurn = Math.floor(Math.random() * 2);
       turn.innerHTML = `It's ${currentTurn?p2inp.value:p1inp.value}'s turn.`;
+
       window.scrollTo(0, window.innerHeight);
     };
 
@@ -119,6 +123,17 @@ const web = {
         currentTurn++;
         turn.innerHTML = `It's ${p2inp.value}'s turn.`;
       }
+    }
+
+    //Draws line on game board showing winning combination.
+    const drawLine = function (combination) {
+      console.log(combination);
+      const combClass = `combination-${combination}`;
+      const gameBoard = document.getElementById('gameGrid');
+      const line = document.createElement('div');
+      line.classList.add('winning-line');
+      line.classList.add(combClass);
+      gameBoard.appendChild(line);
     }
 
     //====================== Ievgeniia

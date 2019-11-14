@@ -48,7 +48,7 @@ const web = {
       return (!field.classList.contains("icon-x") && !field.classList.contains("icon-o"))
     };
 
-    // Locks game board fields after the end of game.
+    // Locks game board fields after the end of the game.
     const lockBoard = function () {
       boardFields.forEach(field => field.removeEventListener("click", pickField));
     };
@@ -125,7 +125,7 @@ const web = {
       }
     }
 
-    //Draws line on game board showing winning combination.
+    //Draws line on the game board that shows winning combination.
     const drawLine = function (combination) {
       const combClass = `combination-${combination}`;
       const gameBoard = document.getElementById('gameGrid');
@@ -133,7 +133,14 @@ const web = {
       line.classList.add('winning-line');
       line.classList.add(combClass);
       gameBoard.appendChild(line);
+
+      setTimeout(() => {
+        gameBoard.removeChild(line);
+      }, 1800)
     }
+
+
+
 
     //====================== Ievgeniia
     //Add symbols on board 
@@ -149,7 +156,7 @@ const web = {
     ];
     //.................................
 
-    // If field is available adds right figure on board field depending on the current turn.
+    // If field is available adds right figure on a board field depending on the current turn.
     const pickField = function (e) {
       if (validField(e.target)) {
         e.target.classList.add(currentTurn ? "icon-o" : "icon-x");

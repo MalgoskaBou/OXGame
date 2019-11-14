@@ -127,7 +127,6 @@ const web = {
 
     //Draws line on game board showing winning combination.
     const drawLine = function (combination) {
-      console.log(combination);
       const combClass = `combination-${combination}`;
       const gameBoard = document.getElementById('gameGrid');
       const line = document.createElement('div');
@@ -170,7 +169,6 @@ const web = {
         }
         //...........................
         changeTurn();
-        // winOrDraw();
       }
     };
 

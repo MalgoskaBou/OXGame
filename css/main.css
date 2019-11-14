@@ -279,12 +279,15 @@ label:focus,
     background: #FBC375;
     border-radius: 8px;
     transform-origin: center;
-    transform: translate(-50%, calc(-50%));
 }
 
 .combination-012 {
     top: calc((100% - 80px)/6 + 30px);
     transform: translate(-50%, -50%);
+}
+
+.combination-345 {
+    transform: translate(-50%, calc(-50%));
 }
 
 .combination-678 {
@@ -295,6 +298,10 @@ label:focus,
 .combination-036 {
     left: calc((100% - 50px)/6 + 15px);
     transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.combination-147 {
+    transform: translate(-50%, calc(-50%)) rotate(90deg);
 }
 
 .combination-258 {

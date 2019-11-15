@@ -60,6 +60,10 @@ body {
     width: 100%;
 }
 
+#gameBoard {
+    display: none;
+}
+
 @media screen and (min-width: 441px) {
     #gameBoard {
         width: 400px;

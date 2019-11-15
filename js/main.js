@@ -130,10 +130,15 @@ const web = {
     // restartGame function 
 
     function restart () {
-      let square = document.getElementsByClassName("icon-o", "icon-x");
-      for (let i = 0; i < square.length; i++){
-        square[i].classList.remove("icon-o", "icon-x");
-      }
+      // Remove "o" squares
+      let square1 = document.getElementsByClassName("icon-o");
+      for (let i = 0; i < square1.length; i++){
+        square1[i].classList.remove("icon-o");
     }
-
+      // Remove "x" squares
+      let square2 = document.getElementsByClassName("icon-x");
+      for (let i = 0; i < square2.length; i++){
+        square2[i].classList.remove("icon-x");
+      }
+  }
     restartGame.addEventListener("click", restart);

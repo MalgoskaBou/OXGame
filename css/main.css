@@ -55,9 +55,13 @@ body {
     height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
-    padding: 10% 0;
+    align-items: stretch;
+    padding: 20px 0;
     width: 100%;
+}
+
+#gameBoard {
+    display: none;
 }
 
 @media screen and (min-width: 441px) {
@@ -176,7 +180,7 @@ body {
     display: grid;
     grid-template-columns: 90px 190px;
     max-width: 350px;
-    padding-bottom: 20%;
+    padding-bottom: 15%;
     font-size: 0.8rem;
 }
 
@@ -288,18 +292,8 @@ label:focus,
 }
 
 .combination-345 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    transform: translate(-50%, calc(-50%));
-    animation: slide-center 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1;
-=======
-    transform: translate(-50%, -50%);
-    animation: slide-center 0.35s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1;
->>>>>>> dev
-=======
     transform: translate(-50%, -50%);
     animation: slide-center 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1;
->>>>>>> dev
 }
 
 .combination-678 {
@@ -343,9 +337,10 @@ label:focus,
 
     100% {
         opacity: 1;
-        width: 100%;
+        width: 85%;
     }
 }
+
 
 @media only screen and (max-width: 768px) {
 

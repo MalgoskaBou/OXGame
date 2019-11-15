@@ -15,6 +15,12 @@ const web = {
     const name2 = document.querySelector(".player-2-name");
     // ====================
     let currentTurn;
+    const winCombinations = [
+      ['012', '345', '678'],
+      ['036', '147', '258'],
+      ['048', '246']
+    ];
+    let winCombination;
 
 
     // ==================== FUNCTIONS 
@@ -125,7 +131,7 @@ const web = {
       }
     }
 
-    //Draws line on the game board that shows winning combination.
+    //Draws line on the game board and shows winning combination.
     const drawLine = function (combination) {
       const combClass = `combination-${combination}`;
       const gameBoard = document.getElementById('gameGrid');
@@ -138,9 +144,6 @@ const web = {
         gameBoard.removeChild(line);
       }, 1800)
     }
-
-
-
 
     //====================== Ievgeniia
     //Add symbols on board 
@@ -167,11 +170,11 @@ const web = {
         const result = checkBoard();
         if (result == "x winner") {
           lockBoard();
-          setTimeout(drawLine('012'), 200);
+          setTimeout(drawLine(winCombination), 200);
           setTimeout(showWinnerX, 2000);
         } else if (result == "o winner") {
           lockBoard();
-          setTimeout(drawLine('012'), 200);
+          setTimeout(drawLine(winCombination), 200);
           setTimeout(showWinnerO, 2000);
         } else {
           if (!emptyCellDetected()) {
@@ -291,20 +294,24 @@ const web = {
     }
 
     // Check all board and find the winner or draw
-    function checkBoard(resultBoard) {
+    function checkBoard() {
       // Check rows
       for (var i = 0; i < 3; i++) {
         var result = findWinner(checkHorizontal(i));
         if (result === x) {
+          winCombination = winCombinations[0][i];
           return "x winner";
         } else if (result === o) {
+          winCombination = winCombinations[0][i];
           return "o winner";
         }
         //Check columns
         result = findWinner(checkVertical(i));
         if (result === x) {
+          winCombination = winCombinations[1][i];
           return "x winner";
         } else if (result === o) {
+          winCombination = winCombinations[1][i];
           return "o winner";
         }
       }
@@ -312,16 +319,20 @@ const web = {
       //Check diagonal 1
       var diagonalOneRes = findWinner(diagonalOne());
       if (diagonalOneRes === x) {
+        winCombination = winCombinations[2][0];
         return "x winner";
       } else if (diagonalOneRes === o) {
+        winCombination = winCombinations[2][0];
         return "o winner";
       }
 
       //Check diagonal 2
       var diagonalTwoRes = findWinner(diagonalTwo());
       if (diagonalTwoRes === x) {
+        winCombination = winCombinations[2][1];
         return "x winner";
       } else if (diagonalTwoRes === o) {
+        winCombination = winCombinations[2][1];
         return "o winner";
       }
       return empty;

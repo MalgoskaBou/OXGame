@@ -9,10 +9,12 @@ const web = {
     const p2inp = document.getElementById("player2Name");
     // ==================== buttons
     const play = document.getElementById("play");
-    // ==================== text elements
+    // ==================== divs
     const turn = document.getElementById("turn");
     const name1 = document.querySelector(".player-1-name");
     const name2 = document.querySelector(".player-2-name");
+    const startScreen = document.getElementById("startScreen");
+    const boardScreen = document.getElementById("gameBoard");
     // ====================
     let currentTurn;
     const winCombinations = [
@@ -64,7 +66,19 @@ const web = {
 
     // ==================== game-start
 
-    //Sets avatar for the first player.
+    // Switches to board screen
+    const switchToBoard = function () {
+      startScreen.style.display = 'none';
+      boardScreen.style.display = 'flex';
+    }
+
+    // Switches to start screen
+    const switchToStart = function () {
+      startScreen.style.display = 'flex';
+      boardScreen.style.display = 'none';
+    }
+
+    // Sets avatar for the first player.
     const pickAvatar1 = function (e) {
       const userImg = document.getElementById('player-1-avatar');
       const lastClass = userImg.classList.item(2);
@@ -108,7 +122,7 @@ const web = {
       currentTurn = Math.floor(Math.random() * 2);
       turn.innerHTML = `It's ${currentTurn?p2inp.value:p1inp.value}'s turn.`;
 
-      window.scrollTo(0, window.innerHeight);
+      switchToBoard();
     };
 
     // ==================== game-course
@@ -424,6 +438,10 @@ const web = {
     avatars2.forEach(avatar => avatar.addEventListener('click', pickAvatar2));
     play.addEventListener("click", run);
     boardFields.forEach(field => field.addEventListener("click", pickField));
+
+    // TO TRZEBA BĘDZIE USUNĄĆ GDY MAGDA DODA SWOJĄ CZĘŚĆ!!
+    document.getElementById('restartGame').addEventListener('click', switchToStart);
+    document.getElementById('newGame').addEventListener('click', switchToStart);
 
   } // <-- end of init function
 } // <-- end of web object

@@ -116,8 +116,8 @@ const web = {
     //=======================MAGDA
 
     // Add variables
-    const newGame = document.getElementById("newGame");
-    const restartGame = document.getElementById("restartGame");
+    let newGame = document.getElementById("newGame");
+    let restartGame = document.getElementById("restartGame");
 
     // newGame function
       let startNew = function () {
@@ -128,7 +128,12 @@ const web = {
     newGame.addEventListener("click", startNew);
 
     // restartGame function 
-    let restart = function () {
-      
+
+    function restart () {
+      let square = document.getElementsByClassName("icon-o", "icon-x");
+      for (let i = 0; i < square.length; i++){
+        square[i].classList.remove("icon-o", "icon-x");
+      }
     }
 
+    restartGame.addEventListener("click", restart);

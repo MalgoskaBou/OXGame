@@ -130,6 +130,9 @@ const web = {
     // restartGame function 
 
     function restart () {
+      // New board
+      let board = document.getElementsByClassName("grid-container");
+      board.style.display = "grid";
       // Remove "o" squares
       let square1 = document.getElementsByClassName("icon-o");
       for (let i = 0; i < square1.length; i++){

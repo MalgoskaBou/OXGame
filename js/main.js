@@ -15,6 +15,12 @@ const web = {
     const name2 = document.querySelector(".player-2-name");
     // ====================
     let currentTurn;
+    const winCombinations = [
+      ['012', '345', '678'],
+      ['036', '147', '258'],
+      ['048', '246']
+    ];
+    let winCombination;
 
 
     // ==================== FUNCTIONS 
@@ -48,7 +54,7 @@ const web = {
       return (!field.classList.contains("icon-x") && !field.classList.contains("icon-o"))
     };
 
-    // Locks game board fields after the end of game.
+    // Locks game board fields after the end of the game.
     const lockBoard = function () {
       boardFields.forEach(field => field.removeEventListener("click", pickField));
     };
@@ -57,10 +63,6 @@ const web = {
 
     //Sets avatar for the first player.
     const pickAvatar1 = function (e) {
-      const img1 = document.getElementById('avatars1').getElementsByClassName('avatar-1');
-      const img2 = document.getElementById('avatars1').getElementsByClassName('avatar-2');
-      const img3 = document.getElementById('avatars1').getElementsByClassName('avatar-3');
-
       const userImg = document.getElementById('player-1-avatar');
       const lastClass = userImg.classList.item(2);
       userImg.classList.remove(lastClass);
@@ -73,10 +75,6 @@ const web = {
 
     //Sets avatar for second player.
     const pickAvatar2 = function (e) {
-      const img1 = document.getElementById('avatars2').getElementsByClassName('avatar-4');
-      const img2 = document.getElementById('avatars2').getElementsByClassName('avatar-5');
-      const img3 = document.getElementById('avatars2').getElementsByClassName('avatar-6');
-
       const userImg = document.getElementById('player-2-avatar');
       const lastClass = userImg.classList.item(2);
       userImg.classList.remove(lastClass);
@@ -95,15 +93,19 @@ const web = {
         return;
       };
       clearNameAlert(p1inp);
+
       if (!validName(p2inp.value)) {
         showNameAlert(p2inp);
         return;
       };
       clearNameAlert(p2inp);
+
       name1.innerText = p1inp.value;
       name2.innerText = p2inp.value;
+
       currentTurn = Math.floor(Math.random() * 2);
       turn.innerHTML = `It's ${currentTurn?p2inp.value:p1inp.value}'s turn.`;
+
       window.scrollTo(0, window.innerHeight);
     };
 
@@ -121,6 +123,20 @@ const web = {
       }
     }
 
+    //Draws line on the game board and shows winning combination.
+    const drawLine = function (combination) {
+      const combClass = `combination-${combination}`;
+      const gameBoard = document.getElementById('gameGrid');
+      const line = document.createElement('div');
+      line.classList.add('winning-line');
+      line.classList.add(combClass);
+      gameBoard.appendChild(line);
+
+      setTimeout(() => {
+        gameBoard.removeChild(line);
+      }, 1800)
+    }
+
     //====================== Ievgeniia
     //Add symbols on board 
     const x = "x";
@@ -135,27 +151,31 @@ const web = {
     ];
     //.................................
 
-    // If field is available adds right figure on board field depending on the current turn.
+    // If field is available adds right figure on a board field depending on the current turn.
     const pickField = function (e) {
       if (validField(e.target)) {
-        e.target.classList.add(Boolean(currentTurn) ? "icon-o" : "icon-x");
+        e.target.classList.add(currentTurn ? "icon-o" : "icon-x");
         //============== Ievgeniia
         let indexBox = e.target.classList.item(1);
         let indexPlyerBox = e.target.classList.item(2);
         clickInformation(indexBox, indexPlyerBox);
         const result = checkBoard();
         if (result == "x winner") {
+          lockBoard();
+          setTimeout(drawLine(winCombination), 200);
           setTimeout(showWinnerX, 2000);
         } else if (result == "o winner") {
+          lockBoard();
+          setTimeout(drawLine(winCombination), 200);
           setTimeout(showWinnerO, 2000);
         } else {
           if (!emptyCellDetected()) {
+            lockBoard();
             setTimeout(showDraw, 2000);
           }
         }
         //...........................
         changeTurn();
-        // winOrDraw();
       }
     };
 
@@ -266,20 +286,24 @@ const web = {
     }
 
     // Check all board and find the winner or draw
-    function checkBoard(resultBoard) {
+    function checkBoard() {
       // Check rows
       for (var i = 0; i < 3; i++) {
         var result = findWinner(checkHorizontal(i));
         if (result === x) {
+          winCombination = winCombinations[0][i];
           return "x winner";
         } else if (result === o) {
+          winCombination = winCombinations[0][i];
           return "o winner";
         }
         //Check columns
         result = findWinner(checkVertical(i));
         if (result === x) {
+          winCombination = winCombinations[1][i];
           return "x winner";
         } else if (result === o) {
+          winCombination = winCombinations[1][i];
           return "o winner";
         }
       }
@@ -287,16 +311,20 @@ const web = {
       //Check diagonal 1
       var diagonalOneRes = findWinner(diagonalOne());
       if (diagonalOneRes === x) {
+        winCombination = winCombinations[2][0];
         return "x winner";
       } else if (diagonalOneRes === o) {
+        winCombination = winCombinations[2][0];
         return "o winner";
       }
 
       //Check diagonal 2
       var diagonalTwoRes = findWinner(diagonalTwo());
       if (diagonalTwoRes === x) {
+        winCombination = winCombinations[2][1];
         return "x winner";
       } else if (diagonalTwoRes === o) {
+        winCombination = winCombinations[2][1];
         return "o winner";
       }
       return empty;
@@ -316,7 +344,73 @@ const web = {
       }
       return false;
     }
-    //.........................................
+
+    //<<<<<<<<<<< WINNER X SCREEN >>>>>>>>>>>
+
+    function showWinnerX(winnerX) {
+      //Make game board invisible >>
+      const endScreen = document.querySelector('.grid-container');
+      endScreen.style.display = 'none';
+      //Create a NEW element >>
+      const winnerScreen = document.createElement("div");
+      winnerScreen.setAttribute('id', 'winnerScreen');
+      //Replace new element >> >>
+      //Find Parent element >>
+      var gameGrid = document.getElementById('gameGrid');
+      //Get link on a child element >>
+      var theFirstChildRow = gameGrid.firstChild;
+      //Put a new element before child element >>
+      gameGrid.insertBefore(winnerScreen, theFirstChildRow);
+      //..................................................
+      //Hide Player2 and score / show only winner Player1
+      const hiddenPlayer2 = document.querySelector('.player2-container');
+      hiddenPlayer2.style.display = 'none';
+      //Hide Score
+      const hiddenScore = document.querySelector('.score-turn');
+      hiddenScore.style.display = 'none';
+      //Add inner text to the new 'winnerScreen' element >>
+      winnerScreen.innerHTML = 'Winner!'; // X
+      //Add styles to the new 'winnerScreen' element >>
+      winnerScreen.style.cssText = 'width: 360px; height: 360px; background: transparent; padding-top: 36px; font-size: 64px; line-height: 75px; font-weight: bold; text-transform: uppercase; color: #FD8328';
+    }
+
+    //<<<<<<<<<<< WINNER O SCREEN >>>>>>>>>>
+    function showWinnerO(winnerO) {
+      const endScreen = document.querySelector('.grid-container');
+      endScreen.style.display = 'none';
+
+      const winnerScreen = document.createElement("div");
+      winnerScreen.setAttribute('id', 'winnerScreen');
+
+      var gameGrid = document.getElementById('gameGrid');
+      var theFirstChildRow = gameGrid.firstChild;
+      gameGrid.insertBefore(winnerScreen, theFirstChildRow);
+      //..................................................
+      const hiddenPlayer1 = document.querySelector('.player1-container');
+      hiddenPlayer1.style.display = 'none';
+      const hiddenScore = document.querySelector('.score-turn');
+      hiddenScore.style.display = 'none';
+
+      winnerScreen.innerHTML = 'Winner!';
+      winnerScreen.style.cssText = 'width: 360px; height: 360px; background: transparent; padding-top: 36px; font-size: 64px; line-height: 75px; font-weight: bold; text-transform: uppercase; color:#B5EAD3';
+    }
+
+    //<<<<<<<<<<<< DRAW SCREEN >>>>>>>>>>>
+    function showDraw(draw) {
+      const endScreen = document.querySelector('.grid-container');
+      endScreen.style.display = 'none';
+
+      const winnerScreen = document.createElement("div");
+      winnerScreen.setAttribute('id', 'winnerScreen');
+
+      var gameGrid = document.getElementById('gameGrid');
+      var theFirstChildRow = gameGrid.firstChild;
+      gameGrid.insertBefore(winnerScreen, theFirstChildRow);
+      //..................................................
+      winnerScreen.innerHTML = 'Draw!';
+      winnerScreen.style.cssText = 'width: 360px; height: 360px; background: transparent; padding-top: 36px; font-size: 64px; line-height: 75px; font-weight: bold; text-transform: uppercase; color: #FBC375';
+    }
+
 
     // ==================== EVENT LISTENERS
 
@@ -327,71 +421,3 @@ const web = {
 
   } // <-- end of init function
 } // <-- end of web object
-
-//============================ Ievgeniia 
-//<<<<<<<<<<< WINNER X SCREEN >>>>>>>>>>>
-
-function showWinnerX(winnerX) {
-  //Make game board invisible >>
-  const endScreen = document.querySelector('.grid-container');
-  endScreen.style.display = 'none';
-  //Create a NEW element >>
-  const winnerScreen = document.createElement("div");
-  winnerScreen.setAttribute('id', 'winnerScreen');
-  //Replace new element >> >>
-  //Find Parent element >>
-  var gameGrid = document.getElementById('gameGrid');
-  //Get link on a child element >>
-  var theFirstChildRow = gameGrid.firstChild;
-  //Put a new element before child element >>
-  gameGrid.insertBefore(winnerScreen, theFirstChildRow);
-  //..................................................
-  //Hide Player2 and score / show only winner Player1
-  const hiddenPlayer2 = document.querySelector('.player2-container');
-  hiddenPlayer2.style.display = 'none';
-  //Hide Score
-  const hiddenScore = document.querySelector('.score-turn');
-  hiddenScore.style.display = 'none';
-  //Add inner text to the new 'winnerScreen' element >>
-  winnerScreen.innerHTML = 'Winner!'; // X
-  //Add styles to the new 'winnerScreen' element >>
-  winnerScreen.style.cssText = 'width: 360px; height: 360px; background: transparent; padding-top: 36px; font-size: 64px; line-height: 75px; font-weight: bold; text-transform: uppercase; color: #FD8328';
-}
-
-//<<<<<<<<<<< WINNER O SCREEN >>>>>>>>>>
-function showWinnerO(winnerO) {
-  const endScreen = document.querySelector('.grid-container');
-  endScreen.style.display = 'none';
-
-  const winnerScreen = document.createElement("div");
-  winnerScreen.setAttribute('id', 'winnerScreen');
-
-  var gameGrid = document.getElementById('gameGrid');
-  var theFirstChildRow = gameGrid.firstChild;
-  gameGrid.insertBefore(winnerScreen, theFirstChildRow);
-  //..................................................
-  const hiddenPlayer1 = document.querySelector('.player1-container');
-  hiddenPlayer1.style.display = 'none';
-  const hiddenScore = document.querySelector('.score-turn');
-  hiddenScore.style.display = 'none';
-
-  winnerScreen.innerHTML = 'Winner!';
-  winnerScreen.style.cssText = 'width: 360px; height: 360px; background: transparent; padding-top: 36px; font-size: 64px; line-height: 75px; font-weight: bold; text-transform: uppercase; color:#B5EAD3';
-}
-
-//<<<<<<<<<<<< DRAW SCREEN >>>>>>>>>>>
-function showDraw(draw) {
-  const endScreen = document.querySelector('.grid-container');
-  endScreen.style.display = 'none';
-
-  const winnerScreen = document.createElement("div");
-  winnerScreen.setAttribute('id', 'winnerScreen');
-
-  var gameGrid = document.getElementById('gameGrid');
-  var theFirstChildRow = gameGrid.firstChild;
-  gameGrid.insertBefore(winnerScreen, theFirstChildRow);
-  //..................................................
-  winnerScreen.innerHTML = 'Draw!';
-  winnerScreen.style.cssText = 'width: 360px; height: 360px; background: transparent; padding-top: 36px; font-size: 64px; line-height: 75px; font-weight: bold; text-transform: uppercase; color: #FBC375';
-}
-//...................................

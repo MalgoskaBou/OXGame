@@ -70,7 +70,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 3% 0 5% 0;
+    padding: 15px 0 15px 0;
 }
 
 .grid-container {
@@ -266,6 +266,55 @@ label:focus,
     padding: 0;
     text-align: left;
     color: #FD8328;
+}
+
+.winning-line {
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    width: 85%;
+    height: 16px;
+    top: 50%;
+    left: 50%;
+    background: #FBC375;
+    border-radius: 8px;
+    transform-origin: center;
+}
+
+.combination-012 {
+    top: calc((100% - 80px)/6 + 30px);
+    transform: translate(-50%, -50%);
+}
+
+.combination-345 {
+    transform: translate(-50%, calc(-50%));
+}
+
+.combination-678 {
+    top: calc(100% - (100% - 80px)/6 - 30px);
+    transform: translate(-50%, -50%);
+}
+
+.combination-036 {
+    left: calc((100% - 50px)/6 + 15px);
+    transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.combination-147 {
+    transform: translate(-50%, calc(-50%)) rotate(90deg);
+}
+
+.combination-258 {
+    left: calc(100% - (100% - 50px)/6 - 15px);
+    transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.combination-048 {
+    transform: translate(-50%, -50%) rotate(45deg) scaleX(1.414);
+}
+
+.combination-246 {
+    transform: translate(-50%, -50%) rotate(-45deg) scaleX(1.414);
 }
 
 @media only screen and (max-width: 768px) {

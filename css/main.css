@@ -19,11 +19,11 @@ body {
     justify-content: center;
 }
 
-#gameBoard > .row {
+#gameBoard>.row {
     width: 360px;
 }
 
-#startScreen > .row {
+#startScreen>.row {
     width: 700px;
 }
 
@@ -70,7 +70,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 3% 0 5% 0;
+    padding: 15px 0 15px 0;
 }
 
 .grid-container {
@@ -150,7 +150,8 @@ body {
 .avatar {
     width: 48px;
     height: 48px;
-    background-color: #D0D0D0;
+    background-color: #FFFFFF;
+    border: 1px solid #D0D0D0;
     border-radius: 100%;
     margin: 5% 0;
     background-repeat: no-repeat;
@@ -183,6 +184,7 @@ body {
     #player1.player-container {
         justify-content: left;
     }
+
     #player2.player-container {
         justify-content: right;
     }
@@ -200,10 +202,9 @@ input {
     box-sizing: border-box;
     border-radius: 8px;
     background-color: #FFFFFF;
+    border: 1px solid #D0D0D0;
     padding: 0 10px;
-    border: none;
     margin: 6px 0;
-    
 }
 
 textarea:hover,
@@ -217,8 +218,7 @@ button:active,
 button:hover,
 label:focus,
 .btn:active,
-.btn.active
-{
+.btn.active {
     outline: none;
     box-shadow: none;
 }
@@ -228,21 +228,113 @@ label:focus,
 }
 
 .avatar-1 {
-    background-image: url(../img/shrimp.png);
+    background-image: url(../img/shrimp.svg);
+    background-size: 70%;
 }
+
 .avatar-2 {
-    background-image: url(../img/unicorn.png);
+    background-image: url(../img/unicorn.svg);
+    background-size: 70%;
 }
+
 .avatar-3 {
-    background-image: url(../img/fish.png);
+    background-image: url(../img/fish.svg);
+    background-size: 70%;
 }
+
 .avatar-4 {
-    background-image: url(../img/cat.png);
+    background-image: url(../img/cat.svg);
+    background-size: 70%;
 }
+
 .avatar-5 {
-    background-image: url(../img/dog.png);
+    background-image: url(../img/dog.svg);
+    background-size: 70%;
 }
+
 .avatar-6 {
-    background-image: url(../img/elephant.png);
+    background-image: url(../img/mouse.svg);
+    background-size: 70%;
 }
-.empty{}
+
+.alert {
+    position: absolute;
+    top: 150px;
+    right: 0;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    padding: 0;
+    text-align: left;
+    color: #FD8328;
+}
+
+.winning-line {
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    width: 85%;
+    height: 16px;
+    top: 50%;
+    left: 50%;
+    background: #FBC375;
+    border-radius: 8px;
+    transform-origin: center;
+}
+
+.combination-012 {
+    top: calc((100% - 80px)/6 + 30px);
+    transform: translate(-50%, -50%);
+}
+
+.combination-345 {
+    transform: translate(-50%, calc(-50%));
+}
+
+.combination-678 {
+    top: calc(100% - (100% - 80px)/6 - 30px);
+    transform: translate(-50%, -50%);
+}
+
+.combination-036 {
+    left: calc((100% - 50px)/6 + 15px);
+    transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.combination-147 {
+    transform: translate(-50%, calc(-50%)) rotate(90deg);
+}
+
+.combination-258 {
+    left: calc(100% - (100% - 50px)/6 - 15px);
+    transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.combination-048 {
+    transform: translate(-50%, -50%) rotate(45deg) scaleX(1.414);
+}
+
+.combination-246 {
+    transform: translate(-50%, -50%) rotate(-45deg) scaleX(1.414);
+}
+
+@media only screen and (max-width: 768px) {
+
+    /* For mobile phones */
+    [class*="col-"] {
+        width: 100%;
+    }
+}
+
+.btn-play:hover,
+.btn-restart:hover {
+    background-color: #FF9A50;
+
+}
+
+.btn-new-game:hover {
+    background-color: #3E4255;
+}
+
+.item:hover {
+    background-color: #447B80;
+}

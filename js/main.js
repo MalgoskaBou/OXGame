@@ -344,7 +344,73 @@ const web = {
       }
       return false;
     }
-    //.........................................
+
+    //<<<<<<<<<<< WINNER X SCREEN >>>>>>>>>>>
+
+    function showWinnerX(winnerX) {
+      //Make game board invisible >>
+      const endScreen = document.querySelector('.grid-container');
+      endScreen.style.display = 'none';
+      //Create a NEW element >>
+      const winnerScreen = document.createElement("div");
+      winnerScreen.setAttribute('id', 'winnerScreen');
+      //Replace new element >> >>
+      //Find Parent element >>
+      var gameGrid = document.getElementById('gameGrid');
+      //Get link on a child element >>
+      var theFirstChildRow = gameGrid.firstChild;
+      //Put a new element before child element >>
+      gameGrid.insertBefore(winnerScreen, theFirstChildRow);
+      //..................................................
+      //Hide Player2 and score / show only winner Player1
+      const hiddenPlayer2 = document.querySelector('.player2-container');
+      hiddenPlayer2.style.display = 'none';
+      //Hide Score
+      const hiddenScore = document.querySelector('.score-turn');
+      hiddenScore.style.display = 'none';
+      //Add inner text to the new 'winnerScreen' element >>
+      winnerScreen.innerHTML = 'Winner!'; // X
+      //Add styles to the new 'winnerScreen' element >>
+      winnerScreen.style.cssText = 'width: 360px; height: 360px; background: transparent; padding-top: 36px; font-size: 64px; line-height: 75px; font-weight: bold; text-transform: uppercase; color: #FD8328';
+    }
+
+    //<<<<<<<<<<< WINNER O SCREEN >>>>>>>>>>
+    function showWinnerO(winnerO) {
+      const endScreen = document.querySelector('.grid-container');
+      endScreen.style.display = 'none';
+
+      const winnerScreen = document.createElement("div");
+      winnerScreen.setAttribute('id', 'winnerScreen');
+
+      var gameGrid = document.getElementById('gameGrid');
+      var theFirstChildRow = gameGrid.firstChild;
+      gameGrid.insertBefore(winnerScreen, theFirstChildRow);
+      //..................................................
+      const hiddenPlayer1 = document.querySelector('.player1-container');
+      hiddenPlayer1.style.display = 'none';
+      const hiddenScore = document.querySelector('.score-turn');
+      hiddenScore.style.display = 'none';
+
+      winnerScreen.innerHTML = 'Winner!';
+      winnerScreen.style.cssText = 'width: 360px; height: 360px; background: transparent; padding-top: 36px; font-size: 64px; line-height: 75px; font-weight: bold; text-transform: uppercase; color:#B5EAD3';
+    }
+
+    //<<<<<<<<<<<< DRAW SCREEN >>>>>>>>>>>
+    function showDraw(draw) {
+      const endScreen = document.querySelector('.grid-container');
+      endScreen.style.display = 'none';
+
+      const winnerScreen = document.createElement("div");
+      winnerScreen.setAttribute('id', 'winnerScreen');
+
+      var gameGrid = document.getElementById('gameGrid');
+      var theFirstChildRow = gameGrid.firstChild;
+      gameGrid.insertBefore(winnerScreen, theFirstChildRow);
+      //..................................................
+      winnerScreen.innerHTML = 'Draw!';
+      winnerScreen.style.cssText = 'width: 360px; height: 360px; background: transparent; padding-top: 36px; font-size: 64px; line-height: 75px; font-weight: bold; text-transform: uppercase; color: #FBC375';
+    }
+
 
     // ==================== EVENT LISTENERS
 
@@ -355,71 +421,3 @@ const web = {
 
   } // <-- end of init function
 } // <-- end of web object
-
-//============================ Ievgeniia 
-//<<<<<<<<<<< WINNER X SCREEN >>>>>>>>>>>
-
-function showWinnerX(winnerX) {
-  //Make game board invisible >>
-  const endScreen = document.querySelector('.grid-container');
-  endScreen.style.display = 'none';
-  //Create a NEW element >>
-  const winnerScreen = document.createElement("div");
-  winnerScreen.setAttribute('id', 'winnerScreen');
-  //Replace new element >> >>
-  //Find Parent element >>
-  var gameGrid = document.getElementById('gameGrid');
-  //Get link on a child element >>
-  var theFirstChildRow = gameGrid.firstChild;
-  //Put a new element before child element >>
-  gameGrid.insertBefore(winnerScreen, theFirstChildRow);
-  //..................................................
-  //Hide Player2 and score / show only winner Player1
-  const hiddenPlayer2 = document.querySelector('.player2-container');
-  hiddenPlayer2.style.display = 'none';
-  //Hide Score
-  const hiddenScore = document.querySelector('.score-turn');
-  hiddenScore.style.display = 'none';
-  //Add inner text to the new 'winnerScreen' element >>
-  winnerScreen.innerHTML = 'Winner!'; // X
-  //Add styles to the new 'winnerScreen' element >>
-  winnerScreen.style.cssText = 'width: 360px; height: 360px; background: transparent; padding-top: 36px; font-size: 64px; line-height: 75px; font-weight: bold; text-transform: uppercase; color: #FD8328';
-}
-
-//<<<<<<<<<<< WINNER O SCREEN >>>>>>>>>>
-function showWinnerO(winnerO) {
-  const endScreen = document.querySelector('.grid-container');
-  endScreen.style.display = 'none';
-
-  const winnerScreen = document.createElement("div");
-  winnerScreen.setAttribute('id', 'winnerScreen');
-
-  var gameGrid = document.getElementById('gameGrid');
-  var theFirstChildRow = gameGrid.firstChild;
-  gameGrid.insertBefore(winnerScreen, theFirstChildRow);
-  //..................................................
-  const hiddenPlayer1 = document.querySelector('.player1-container');
-  hiddenPlayer1.style.display = 'none';
-  const hiddenScore = document.querySelector('.score-turn');
-  hiddenScore.style.display = 'none';
-
-  winnerScreen.innerHTML = 'Winner!';
-  winnerScreen.style.cssText = 'width: 360px; height: 360px; background: transparent; padding-top: 36px; font-size: 64px; line-height: 75px; font-weight: bold; text-transform: uppercase; color:#B5EAD3';
-}
-
-//<<<<<<<<<<<< DRAW SCREEN >>>>>>>>>>>
-function showDraw(draw) {
-  const endScreen = document.querySelector('.grid-container');
-  endScreen.style.display = 'none';
-
-  const winnerScreen = document.createElement("div");
-  winnerScreen.setAttribute('id', 'winnerScreen');
-
-  var gameGrid = document.getElementById('gameGrid');
-  var theFirstChildRow = gameGrid.firstChild;
-  gameGrid.insertBefore(winnerScreen, theFirstChildRow);
-  //..................................................
-  winnerScreen.innerHTML = 'Draw!';
-  winnerScreen.style.cssText = 'width: 360px; height: 360px; background: transparent; padding-top: 36px; font-size: 64px; line-height: 75px; font-weight: bold; text-transform: uppercase; color: #FBC375';
-}
-//...................................

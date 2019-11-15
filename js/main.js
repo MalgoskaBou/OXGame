@@ -63,10 +63,6 @@ const web = {
 
     //Sets avatar for the first player.
     const pickAvatar1 = function (e) {
-      const img1 = document.getElementById('avatars1').getElementsByClassName('avatar-1');
-      const img2 = document.getElementById('avatars1').getElementsByClassName('avatar-2');
-      const img3 = document.getElementById('avatars1').getElementsByClassName('avatar-3');
-
       const userImg = document.getElementById('player-1-avatar');
       const lastClass = userImg.classList.item(2);
       userImg.classList.remove(lastClass);
@@ -79,10 +75,6 @@ const web = {
 
     //Sets avatar for second player.
     const pickAvatar2 = function (e) {
-      const img1 = document.getElementById('avatars2').getElementsByClassName('avatar-4');
-      const img2 = document.getElementById('avatars2').getElementsByClassName('avatar-5');
-      const img3 = document.getElementById('avatars2').getElementsByClassName('avatar-6');
-
       const userImg = document.getElementById('player-2-avatar');
       const lastClass = userImg.classList.item(2);
       userImg.classList.remove(lastClass);

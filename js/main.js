@@ -130,6 +130,9 @@ const web = {
     // restartGame function 
 
     function restart () {
+      // Score unhiding
+      const score = document.querySelector(".score-turn");
+      score.style.display = "inline-block";
       // New board
       let board = document.getElementsByClassName("grid-container");
       board.style.display = "grid";

@@ -288,7 +288,7 @@ label:focus,
 }
 
 .combination-345 {
-    transform: translate(-50%, calc(-50%));
+    transform: translate(-50%, -50%);
     animation: slide-center 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1;
 }
 

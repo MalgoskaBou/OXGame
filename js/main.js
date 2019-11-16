@@ -9,10 +9,12 @@ const web = {
     const p2inp = document.getElementById("player2Name");
     // ==================== buttons
     const play = document.getElementById("play");
-    // ==================== text elements
+    // ==================== divs
     const turn = document.getElementById("turn");
     const name1 = document.querySelector(".player-1-name");
     const name2 = document.querySelector(".player-2-name");
+    const startScreen = document.getElementById("startScreen");
+    const boardScreen = document.getElementById("gameBoard");
     // ====================
     let currentTurn;
     const winCombinations = [
@@ -61,7 +63,19 @@ const web = {
 
     // ==================== game-start
 
-    //Sets avatar for the first player.
+    // Switches to board screen
+    const switchToBoard = function () {
+      startScreen.style.display = 'none';
+      boardScreen.style.display = 'flex';
+    }
+
+    // Switches to start screen
+    const switchToStart = function () {
+      startScreen.style.display = 'flex';
+      boardScreen.style.display = 'none';
+    }
+
+    // Sets avatar for the first player.
     const pickAvatar1 = function (e) {
       const userImg = document.getElementById('player-1-avatar');
       const lastClass = userImg.classList.item(2);
@@ -106,7 +120,7 @@ const web = {
       currentTurn = Math.floor(Math.random() * 2);
       turn.innerHTML = `It's ${currentTurn?p2inp.value:p1inp.value}'s turn.`;
 
-      window.scrollTo(0, window.innerHeight);
+      switchToBoard();
     };
 
 
@@ -371,7 +385,7 @@ const web = {
       //Add inner text to the new 'winnerScreen' element >>
       winnerScreen.innerHTML = 'Winner!'; // X
       //Add styles to the new 'winnerScreen' element >>
-      winnerScreen.style.cssText = 'width: 360px; height: 360px; background: transparent; padding-top: 36px; font-size: 64px; line-height: 75px; font-weight: bold; text-transform: uppercase; color: #FD8328';
+      winnerScreen.style.cssText = 'width: 360px; height: auto; margin-bottom: 20%; background: transparent; padding-top: 36px; font-size: 64px; line-height: 75px; font-weight: bold; text-transform: uppercase; color: #FD8328';
     }
 
     //<<<<<<<<<<< WINNER O SCREEN >>>>>>>>>>
@@ -392,7 +406,7 @@ const web = {
       hiddenScore.style.display = 'none';
 
       winnerScreen.innerHTML = 'Winner!';
-      winnerScreen.style.cssText = 'width: 360px; height: 360px; background: transparent; padding-top: 36px; font-size: 64px; line-height: 75px; font-weight: bold; text-transform: uppercase; color:#B5EAD3';
+      winnerScreen.style.cssText = 'width: 360px; height: auto; margin-bottom: 20%; background: transparent; padding-top: 36px; font-size: 64px; line-height: 75px; font-weight: bold; text-transform: uppercase; color:#B5EAD3';
     }
 
     //<<<<<<<<<<<< DRAW SCREEN >>>>>>>>>>>
@@ -408,7 +422,7 @@ const web = {
       gameGrid.insertBefore(winnerScreen, theFirstChildRow);
       //..................................................
       winnerScreen.innerHTML = 'Draw!';
-      winnerScreen.style.cssText = 'width: 360px; height: 360px; background: transparent; padding-top: 36px; font-size: 64px; line-height: 75px; font-weight: bold; text-transform: uppercase; color: #FBC375';
+      winnerScreen.style.cssText = 'width: 360px; height: auto; margin-bottom: 20%; background: transparent; padding-top: 36px; font-size: 64px; line-height: 75px; font-weight: bold; text-transform: uppercase; color: #FBC375';
     }
 
 
@@ -418,6 +432,10 @@ const web = {
     avatars2.forEach(avatar => avatar.addEventListener('click', pickAvatar2));
     play.addEventListener("click", run);
     boardFields.forEach(field => field.addEventListener("click", pickField));
+
+    // TO TRZEBA BĘDZIE USUNĄĆ GDY MAGDA DODA SWOJĄ CZĘŚĆ!!
+    document.getElementById('restartGame').addEventListener('click', switchToStart);
+    document.getElementById('newGame').addEventListener('click', switchToStart);
 
   } // <-- end of init function
 }; // <-- end of web obj.

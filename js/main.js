@@ -430,7 +430,7 @@ const web = {
 
     // newGame function
       let startNew = function () {
-      window.scrollTo(0, 0);
+      switchToStart();
       window.location.reload(true);
     }
 

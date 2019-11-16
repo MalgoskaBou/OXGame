@@ -434,13 +434,10 @@ const web = {
     boardFields.forEach(field => field.addEventListener("click", pickField));
 
     // TO TRZEBA BĘDZIE USUNĄĆ GDY MAGDA DODA SWOJĄ CZĘŚĆ!!
-    document.getElementById('restartGame').addEventListener('click', switchToStart);
-    document.getElementById('newGame').addEventListener('click', switchToStart);
+    // document.getElementById('restartGame').addEventListener('click', switchToStart);
+    // document.getElementById('newGame').addEventListener('click', switchToStart);
 
-  } // <-- end of init function
-}; // <-- end of web obj.
-
-    //=======================MAGDA
+        //=======================MAGDA
 
     // Add variables
     let newGame = document.getElementById("newGame");
@@ -462,20 +459,19 @@ const web = {
       // Unhiding score
       const score = document.querySelector(".score-turn");
       score.style.display = "inline-block";
+      // Remove board fields
+      boardFields.forEach(field => {
+        field.classList.remove('icon-o');
+        field.classList.remove('icon-x');
+        })
       // New board
-      let board = document.getElementsByClassName("grid-container");
-      board.style.display = "grid";
-      // Remove "o" squares
-      let square1 = document.getElementsByClassName("icon-o");
-      for (let i = 0; i < square1.length; i++){
-        square1[i].classList.remove("icon-o");
+      const endScreen = document.querySelector('.grid-container');
+      endScreen.style.display = "grid";
+      boardFields.forEach(field => field.addEventListener("click", pickField));
     }
-      // Remove "x" squares
-      let square2 = document.getElementsByClassName("icon-x");
-      for (let i = 0; i < square2.length; i++){
-        square2[i].classList.remove("icon-x");
-      }
-  }
     restartGame.addEventListener("click", () => {
       restart();
     });
+
+  } // <-- end of init function
+}; // <-- end of web obj.

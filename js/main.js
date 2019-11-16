@@ -434,8 +434,44 @@ const web = {
     boardFields.forEach(field => field.addEventListener("click", pickField));
 
     // TO TRZEBA BĘDZIE USUNĄĆ GDY MAGDA DODA SWOJĄ CZĘŚĆ!!
-    document.getElementById('restartGame').addEventListener('click', switchToStart);
-    document.getElementById('newGame').addEventListener('click', switchToStart);
+    // document.getElementById('restartGame').addEventListener('click', switchToStart);
+    // document.getElementById('newGame').addEventListener('click', switchToStart);
+
+        //=======================MAGDA
+
+    // Add variables
+    let newGame = document.getElementById("newGame");
+    let restartGame = document.getElementById("restartGame");
+
+    // newGame function
+      let startNew = function () {
+      switchToStart();
+      window.location.reload(true);
+    }
+
+    newGame.addEventListener("click", startNew);
+
+    // restartGame function 
+
+    function restart () {
+      // Hiding Draw! or Winner!
+      document.getElementById("winnerScreen").remove();
+      // Unhiding score
+      const score = document.querySelector(".score-turn");
+      score.style.display = "inline-block";
+      // Remove board fields
+      boardFields.forEach(field => {
+        field.classList.remove('icon-o');
+        field.classList.remove('icon-x');
+        })
+      // New board
+      const endScreen = document.querySelector('.grid-container');
+      endScreen.style.display = "grid";
+      boardFields.forEach(field => field.addEventListener("click", pickField));
+    }
+    restartGame.addEventListener("click", () => {
+      restart();
+    });
 
   } // <-- end of init function
-} // <-- end of web object
+}; // <-- end of web obj.

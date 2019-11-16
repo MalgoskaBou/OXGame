@@ -437,7 +437,7 @@ const web = {
     // document.getElementById('restartGame').addEventListener('click', switchToStart);
     // document.getElementById('newGame').addEventListener('click', switchToStart);
 
-        //=======================MAGDA
+    //=======================MAGDA
 
     // Add variables
     let newGame = document.getElementById("newGame");

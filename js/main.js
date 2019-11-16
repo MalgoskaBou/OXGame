@@ -130,7 +130,9 @@ const web = {
     // restartGame function 
 
     function restart () {
-      // Score unhiding
+      // Hiding Draw! or Winner!
+      document.getElementById("winnerScreen").remove();
+      // Unhiding score
       const score = document.querySelector(".score-turn");
       score.style.display = "inline-block";
       // New board
@@ -147,4 +149,6 @@ const web = {
         square2[i].classList.remove("icon-x");
       }
   }
-    restartGame.addEventListener("click", restart);
+    restartGame.addEventListener("click", () => {
+      restart();
+    });

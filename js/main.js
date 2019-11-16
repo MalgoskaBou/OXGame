@@ -463,10 +463,11 @@ const web = {
       boardFields.forEach(field => {
         field.classList.remove('icon-o');
         field.classList.remove('icon-x');
-        })
+        });
       // New board
       const endScreen = document.querySelector('.grid-container');
       endScreen.style.display = "grid";
+      // Pick a field
       boardFields.forEach(field => field.addEventListener("click", pickField));
     }
     restartGame.addEventListener("click", () => {

@@ -385,7 +385,7 @@ const web = {
       //Add inner text to the new 'winnerScreen' element >>
       winnerScreen.innerHTML = 'Winner!'; // X
       //Add styles to the new 'winnerScreen' element >>
-      winnerScreen.style.cssText = 'width: 360px; height: 360px; background: transparent; padding-top: 36px; font-size: 64px; line-height: 75px; font-weight: bold; text-transform: uppercase; color: #FD8328';
+      winnerScreen.style.cssText = 'width: 360px; height: auto; margin-bottom: 20%; background: transparent; padding-top: 36px; font-size: 64px; line-height: 75px; font-weight: bold; text-transform: uppercase; color: #FD8328';
     }
 
     //<<<<<<<<<<< WINNER O SCREEN >>>>>>>>>>
@@ -406,7 +406,7 @@ const web = {
       hiddenScore.style.display = 'none';
 
       winnerScreen.innerHTML = 'Winner!';
-      winnerScreen.style.cssText = 'width: 360px; height: 360px; background: transparent; padding-top: 36px; font-size: 64px; line-height: 75px; font-weight: bold; text-transform: uppercase; color:#B5EAD3';
+      winnerScreen.style.cssText = 'width: 360px; height: auto; margin-bottom: 20%; background: transparent; padding-top: 36px; font-size: 64px; line-height: 75px; font-weight: bold; text-transform: uppercase; color:#B5EAD3';
     }
 
     //<<<<<<<<<<<< DRAW SCREEN >>>>>>>>>>>
@@ -422,7 +422,7 @@ const web = {
       gameGrid.insertBefore(winnerScreen, theFirstChildRow);
       //..................................................
       winnerScreen.innerHTML = 'Draw!';
-      winnerScreen.style.cssText = 'width: 360px; height: 360px; background: transparent; padding-top: 36px; font-size: 64px; line-height: 75px; font-weight: bold; text-transform: uppercase; color: #FBC375';
+      winnerScreen.style.cssText = 'width: 360px; height: auto; margin-bottom: 20%; background: transparent; padding-top: 36px; font-size: 64px; line-height: 75px; font-weight: bold; text-transform: uppercase; color: #FBC375';
     }
 
 

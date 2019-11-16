@@ -440,8 +440,8 @@ const web = {
         //=======================MAGDA
 
     // Add variables
-    let newGame = document.getElementById("newGame");
-    let restartGame = document.getElementById("restartGame");
+    const newGame = document.getElementById("newGame");
+    const restartGame = document.getElementById("restartGame");
 
     // newGame function
       let startNew = function () {

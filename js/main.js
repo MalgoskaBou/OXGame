@@ -437,11 +437,11 @@ const web = {
     // document.getElementById('restartGame').addEventListener('click', switchToStart);
     // document.getElementById('newGame').addEventListener('click', switchToStart);
 
-    //=======================MAGDA
+        //=======================MAGDA
 
     // Add variables
-    let newGame = document.getElementById("newGame");
-    let restartGame = document.getElementById("restartGame");
+    const newGame = document.getElementById("newGame");
+    const restartGame = document.getElementById("restartGame");
 
     // newGame function
       let startNew = function () {
@@ -454,6 +454,11 @@ const web = {
     // restartGame function 
 
     function restart () {
+      //Unhiding players
+      const hiddenPlayer2 = document.querySelector('.player2-container');
+      hiddenPlayer2.style.display = 'grid';
+      const hiddenPlayer1 = document.querySelector('.player1-container');
+      hiddenPlayer1.style.display = 'grid';
       // Hiding Draw! or Winner!
       document.getElementById("winnerScreen").remove();
       // Unhiding score
@@ -463,11 +468,10 @@ const web = {
       boardFields.forEach(field => {
         field.classList.remove('icon-o');
         field.classList.remove('icon-x');
-        });
+        })
       // New board
       const endScreen = document.querySelector('.grid-container');
       endScreen.style.display = "grid";
-      // Pick a field
       boardFields.forEach(field => field.addEventListener("click", pickField));
     }
     restartGame.addEventListener("click", () => {

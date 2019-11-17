@@ -6,12 +6,12 @@
 * [Screenshots](#screenshots)
 * [Technologies](#technologies)
 * [Setup](#setup)
-* [Features](#features)
+* [Further improvements](#further-improvements)
 * [Status](#status)
 * [Contact](#contact)
 
 ## General info
-The purpose of the project was a group work during the CodersCamp bootcamp. Our motivation is to build the very first game and have fun!
+The purpose of the project was a group work during the CodersCamp bootcamp.
 
 ## Screenshots
 ![Screenshot](https://github.com/MalgoskaBou/OXGame/blob/dev/img/screenshot1.png)
@@ -25,19 +25,9 @@ The purpose of the project was a group work during the CodersCamp bootcamp. Our 
 ## Setup
 `git clone https://github.com/MalgoskaBou/OXGame.git`
 
-## Code Examples
-Show examples of usage:
-`put-your-code-here`
-
-## Features
-List of features:
-* 
-* Awesome feature 2
-* Awesome feature 3
-
-To-do list:
-* Playing against computer (AI)
-* Animations
+## Further improvements
+* Playing against the computer
+* Allow the human to choose whether to play as X or O
 
 ## Status
 Project is: _finished_.

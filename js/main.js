@@ -190,26 +190,25 @@ const web = {
       if (validField(e.target)) {
         e.target.classList.add(currentTurn ? "icon-o" : "icon-x");
         e.target.classList.remove('unlocked');
-        // Checks if game met win or draw
+
+        // Check if game met win or draw
         const fieldID = e.target.classList[1];
         const fieldSign = currentTurn ? "icon-o" : "icon-x";
         clickInformation(fieldID, fieldSign);
         const result = checkBoard();
-        if (result == "x winner") {
+        if (result == "x winner" || result == "o winner") {
+          // Update players score
+          result == 'x winner' ? player1score++ : player2score++;
+          player1scoreTxt.innerText = player1score;
+          player2scoreTxt.innerText = player2score;
+          // Show result
           lockBoard();
           drawLine(winCombination);
-          setTimeout(showWinnerX, 2000);
-        } else if (result == "o winner") {
+          setTimeout(() => showWinner(result), 2000);
+        } else if (!emptyCellDetected()) {
           lockBoard();
-          drawLine(winCombination);
-          setTimeout(showWinnerO, 2000);
-        } else {
-          if (!emptyCellDetected()) {
-            lockBoard();
-            setTimeout(showDraw, 2000);
-          }
+          setTimeout(showDraw, 2000);
         }
-
         changeTurn();
       }
     };
@@ -366,13 +365,13 @@ const web = {
     }
 
     //Find combination for Draw 
-    function emptyCellDetected(draw) {
+    function emptyCellDetected() {
 
       function emptyFieldMatch(element) {
         return element === empty;
       }
 
-      for (var i = 0; i < 3; i++) {
+      for (let i = 0; i < 3; i++) {
         if (arrBoard[i].findIndex(emptyFieldMatch) !== -1) {
           return true;
         }
@@ -380,58 +379,33 @@ const web = {
       return false;
     }
 
-    //<<<<<<<<<<< WINNER X SCREEN >>>>>>>>>>>
-
-    function showWinnerX(winnerX) {
+    //<<<<<<<<<<< WINNER SCREEN >>>>>>>>>>>
+    function showWinner(winner) {
       //Make game board invisible >>
-      const endScreen = document.querySelector('.grid-container');
-      endScreen.style.display = 'none';
+      board.style.display = 'none';
       //Create a NEW element >>
-      const winnerScreen = document.createElement("div");
-      winnerScreen.setAttribute('id', 'winnerScreen');
-      //Replace new element >> >>
-      //Find Parent element >>
-      var gameGrid = document.getElementById('gameGrid');
-      //Get link on a child element >>
-      var theFirstChildRow = gameGrid.firstChild;
+      const winnerScreen = document.createElement('div');
+      winnerScreen.id = 'winnerScreen';
       //Put a new element before child element >>
-      gameGrid.insertBefore(winnerScreen, theFirstChildRow);
-      //..................................................
-      //Hide Player2 and score / show only winner Player1
-      const hiddenPlayer2 = document.querySelector('.player2-container');
-      hiddenPlayer2.style.display = 'none';
+      boardContainer.insertBefore(winnerScreen, boardContainer.firstChild);
+      //show only winner Player1
+      let hiddenPlayer;
+      if (winner == "x winner") {
+        hiddenPlayer = document.querySelector('.player2-container');
+      } else if (winner == "o winner") {
+        hiddenPlayer = document.querySelector('.player1-container');
+      }
+      hiddenPlayer.style.display = 'none';
       //Hide Score
-      const hiddenScore = document.querySelector('.score-turn');
-      hiddenScore.style.display = 'none';
+      document.querySelector('.score-turn').style.display = 'none';
       //Add inner text to the new 'winnerScreen' element >>
-      winnerScreen.innerHTML = 'Winner!'; // X
+      winnerScreen.innerHTML = 'Winner!';
       //Add styles to the new 'winnerScreen' element >>
       winnerScreen.style.cssText = 'width: 360px; height: auto; margin-bottom: 20%; background: transparent; padding-top: 36px; font-size: 64px; line-height: 75px; font-weight: bold; text-transform: uppercase; color: #FD8328';
     }
 
-    //<<<<<<<<<<< WINNER O SCREEN >>>>>>>>>>
-    function showWinnerO(winnerO) {
-      const endScreen = document.querySelector('.grid-container');
-      endScreen.style.display = 'none';
-
-      const winnerScreen = document.createElement("div");
-      winnerScreen.setAttribute('id', 'winnerScreen');
-
-      var gameGrid = document.getElementById('gameGrid');
-      var theFirstChildRow = gameGrid.firstChild;
-      gameGrid.insertBefore(winnerScreen, theFirstChildRow);
-      //..................................................
-      const hiddenPlayer1 = document.querySelector('.player1-container');
-      hiddenPlayer1.style.display = 'none';
-      const hiddenScore = document.querySelector('.score-turn');
-      hiddenScore.style.display = 'none';
-
-      winnerScreen.innerHTML = 'Winner!';
-      winnerScreen.style.cssText = 'width: 360px; height: auto; margin-bottom: 20%; background: transparent; padding-top: 36px; font-size: 64px; line-height: 75px; font-weight: bold; text-transform: uppercase; color:#B5EAD3';
-    }
-
     //<<<<<<<<<<<< DRAW SCREEN >>>>>>>>>>>
-    function showDraw(draw) {
+    function showDraw() {
       const endScreen = document.querySelector('.grid-container');
       endScreen.style.display = 'none';
 

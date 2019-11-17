@@ -139,10 +139,10 @@ const web = {
     const changeTurn = function (e) {
       if (currentTurn) {
         currentTurn--;
-        turn.innerHTML = `It's ${p1inp.value}'s turn.`;
+        turn.innerHTML = `${p1inp.value}'s turn.`;
       } else {
         currentTurn++;
-        turn.innerHTML = `It's ${p2inp.value}'s turn.`;
+        turn.innerHTML = `${p2inp.value}'s turn.`;
       }
     }
 

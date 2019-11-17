@@ -3,7 +3,6 @@ const web = {
     // ==================== VARIABLES 
     const startScreen = document.getElementById("startScreen");
     const boardScreen = document.getElementById("gameBoard");
-    const board = document.querySelector(".grid-container");
     const boardFields = document.querySelectorAll(".item");
     const avatars1 = document.querySelectorAll('#avatars1');
     const avatars2 = document.querySelectorAll('#avatars2');
@@ -54,19 +53,19 @@ const web = {
 
     // Returns true if board field given as an argument is valid.
     const validField = function (field) {
-      return (!field.classList.contains("icon-x") && !field.classList.contains("icon-o"))
+      return (!field.classList.contains('icon-x') && !field.classList.contains('icon-o'))
     };
 
     // Locks game board fields after the end of the game.
     const lockBoard = function () {
-      boardFields.forEach(field => field.removeEventListener("click", pickField));
-      board.classList.remove('unlocked');
+      boardFields.forEach(field => field.removeEventListener('click', pickField));
+      boardFields.forEach(field => field.classList.remove('unlocked'));
     };
 
     // Locks game board fields after the end of the game.
     const unlockBoard = function () {
       boardFields.forEach(field => field.addEventListener("click", pickField));
-      board.classList.add('unlocked');
+      boardFields.forEach(field => field.classList.add('unlocked'));
     };
 
     // ==================== game-start
@@ -157,7 +156,7 @@ const web = {
 
       setTimeout(() => {
         gameBoard.removeChild(line);
-      }, 1800)
+      }, 2000)
     }
 
     //====================== Ievgeniia
@@ -167,7 +166,7 @@ const web = {
     const empty = null;
 
     // Create Game board array
-    const arrBoard = [
+    let arrBoard = [
       [empty, empty, empty],
       [empty, empty, empty],
       [empty, empty, empty]
@@ -178,18 +177,19 @@ const web = {
     const pickField = function (e) {
       if (validField(e.target)) {
         e.target.classList.add(currentTurn ? "icon-o" : "icon-x");
-        //============== Ievgeniia
-        let indexBox = e.target.classList.item(1);
-        let indexPlyerBox = e.target.classList.item(2);
-        clickInformation(indexBox, indexPlyerBox);
+        e.target.classList.remove('unlocked');
+        // Checks if game met win or draw
+        const fieldID = e.target.classList[1];
+        const fieldSign = currentTurn ? "icon-o" : "icon-x";
+        clickInformation(fieldID, fieldSign);
         const result = checkBoard();
         if (result == "x winner") {
           lockBoard();
-          setTimeout(drawLine(winCombination), 200);
+          drawLine(winCombination);
           setTimeout(showWinnerX, 2000);
         } else if (result == "o winner") {
           lockBoard();
-          setTimeout(drawLine(winCombination), 200);
+          drawLine(winCombination);
           setTimeout(showWinnerO, 2000);
         } else {
           if (!emptyCellDetected()) {
@@ -197,7 +197,7 @@ const web = {
             setTimeout(showDraw, 2000);
           }
         }
-        //...........................
+
         changeTurn();
       }
     };

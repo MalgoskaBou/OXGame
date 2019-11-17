@@ -190,6 +190,7 @@ const web = {
     // If field is available adds right figure on a board field depending on the current turn.
     const pickField = function (e) {
       if (validField(e.target)) {
+        sound.play();
         e.target.classList.add(currentTurn ? "icon-o" : "icon-x");
         e.target.classList.remove('unlocked');
 
@@ -422,30 +423,20 @@ const web = {
       winnerScreen.style.cssText = 'width: 360px; height: auto; margin-bottom: 20%; background: transparent; padding-top: 36px; font-size: 64px; line-height: 75px; font-weight: bold; text-transform: uppercase; color: #FBC375';
     }
 
-
-    // ==================== EVENT LISTENERS
-
-    avatars1.forEach(avatar => avatar.addEventListener('click', pickAvatar1));
-    avatars2.forEach(avatar => avatar.addEventListener('click', pickAvatar2));
-    play.addEventListener("click", run);
-
-    //=======================MAGDA
-
-    // Add variables
-    const newGame = document.getElementById("newGame");
-    const restartGame = document.getElementById("restartGame");
-
-    // newGame function
-    let startNew = function () {
-      switchToStart();
+//=======================MAGDA
+    // new Game function
+    const newGame = function () {
       window.location.reload(true);
     }
-
-    newGame.addEventListener("click", startNew);
-
-    // restartGame function 
-
-    function restart() {
+    // restart Game function
+    const restartGame = function () {
+      //Restart game conditions
+      arrBoard = [
+        [empty, empty, empty],
+        [empty, empty, empty],
+        [empty, empty, empty]
+      ];
+      result = null;
       //Unhiding players
       document.querySelector('.player1-container').style.display = 'grid';
       document.querySelector('.player2-container').style.display = 'grid';
@@ -454,22 +445,19 @@ const web = {
       // Unhiding score
       document.querySelector('.score-turn').style.display = "inline-block";
       // Restart board 
-      document.querySelector('.grid-container').style.display = 'grid';
+      board.style.display = 'grid';
       boardFields.forEach(field => {
         field.classList.remove('icon-o');
         field.classList.remove('icon-x');
-      })
-      // New board
-      const endScreen = document.querySelector('.grid-container');
-      endScreen.style.display = "grid";
-      boardFields.forEach(field => field.addEventListener("click", pickField));
+      });
+      unlockBoard();
     }
     // ==================== EVENT LISTENERS
     avatars1.forEach(avatar => avatar.addEventListener('click', pickAvatar1));
     avatars2.forEach(avatar => avatar.addEventListener('click', pickAvatar2));
     play.addEventListener("click", run);
-    newGame.addEventListener("click", startNew);
-    restartGame.addEventListener("click", restart);
+    newGameBtn.addEventListener("click", newGame);
+    restartGameBtn.addEventListener("click", restartGame);
 
   } // <-- end of init function
 }; // <-- end of web obj.

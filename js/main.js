@@ -3,6 +3,8 @@ const web = {
     // ==================== VARIABLES 
     const startScreen = document.getElementById("startScreen");
     const boardScreen = document.getElementById("gameBoard");
+    const boardContainer = document.getElementById('gameGrid');
+    const board = document.querySelector('.grid-container');
     const boardFields = document.querySelectorAll(".item");
     const avatars1 = document.querySelectorAll('#avatars1');
     const avatars2 = document.querySelectorAll('#avatars2');
@@ -11,12 +13,18 @@ const web = {
     const p2inp = document.getElementById("player2Name");
     // ==================== buttons
     const play = document.getElementById("play");
+    const newGameBtn = document.getElementById("newGame");
+    const restartGameBtn = document.getElementById("restartGame");
     // ==================== to put text into
     const turn = document.getElementById("turn");
     const name1 = document.querySelector(".player-1-name");
     const name2 = document.querySelector(".player-2-name");
+    const player1scoreTxt = document.getElementById("player-1-score");
+    const player2scoreTxt = document.getElementById("player-2-score");
     // ====================
     let currentTurn;
+    let player1score = 0;
+    let player2score = 0;
     const winCombinations = [
       ['012', '345', '678'],
       ['036', '147', '258'],
@@ -109,24 +117,28 @@ const web = {
 
     // Sets players names, draws the first turn, navigates to the game board.
     const run = function () {
+      // Check if first name is valid
       if (!validName(p1inp.value)) {
         showNameAlert(p1inp);
         return;
       };
       clearNameAlert(p1inp);
-
+      // Check if second name is valid
       if (!validName(p2inp.value)) {
         showNameAlert(p2inp);
         return;
       };
       clearNameAlert(p2inp);
-
+      // Display users names
       name1.innerText = p1inp.value;
       name2.innerText = p2inp.value;
-
+      // Draw first turn
       currentTurn = Math.floor(Math.random() * 2);
       turn.innerHTML = `It's ${currentTurn?p2inp.value:p1inp.value}'s turn.`;
-
+      // Display players score
+      player1scoreTxt.innerText = player1score;
+      player2scoreTxt.innerText = player2score;
+      // Navigate to game board
       switchToBoard();
       unlockBoard();
     };

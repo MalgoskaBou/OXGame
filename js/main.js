@@ -4,9 +4,13 @@ const web = {
     const boardFields = document.querySelectorAll(".item");
     const avatars1 = document.querySelectorAll('#avatars1');
     const avatars2 = document.querySelectorAll('#avatars2');
+    // ==================== SOUNDS
+    const avatars2 = document.querySelectorAll('#avatars2');
+    const sound = document.querySelector('audio.beep');
     // ==================== inputs
     const p1inp = document.getElementById("player1Name");
     const p2inp = document.getElementById("player2Name");
+    const p1inp = document.getElementById("player1Name") // SOUND
     // ==================== buttons
     const play = document.getElementById("play");
     // ==================== divs
@@ -158,7 +162,7 @@ const web = {
     const empty = null;
 
     // Create Game board array
-    const arrBoard = [
+    let arrBoard = [
       [empty, empty, empty],
       [empty, empty, empty],
       [empty, empty, empty]
@@ -437,46 +441,42 @@ const web = {
     // document.getElementById('restartGame').addEventListener('click', switchToStart);
     // document.getElementById('newGame').addEventListener('click', switchToStart);
 
-        //=======================MAGDA
-
-    // Add variables
-    const newGame = document.getElementById("newGame");
-    const restartGame = document.getElementById("restartGame");
-
-    // newGame function
-      let startNew = function () {
-      switchToStart();
+ //=======================MAGDA
+ 
+    // new Game function
+    const startNew = function () {
       window.location.reload(true);
     }
-
-    newGame.addEventListener("click", startNew);
-
-    // restartGame function 
-
-    function restart () {
+    // restart Game function
+    let restart = function () {
+      //Restart game conditions
+      arrBoard = [
+        [empty, empty, empty],
+        [empty, empty, empty],
+        [empty, empty, empty]
+      ];
+      result = null;
       //Unhiding players
-      const hiddenPlayer2 = document.querySelector('.player2-container');
-      hiddenPlayer2.style.display = 'grid';
-      const hiddenPlayer1 = document.querySelector('.player1-container');
-      hiddenPlayer1.style.display = 'grid';
+      document.querySelector('.player1-container').style.display = 'grid';
+      document.querySelector('.player2-container').style.display = 'grid';
       // Hiding Draw! or Winner!
-      document.getElementById("winnerScreen").remove();
+      document.getElementById('winnerScreen').remove();
       // Unhiding score
-      const score = document.querySelector(".score-turn");
-      score.style.display = "inline-block";
-      // Remove board fields
+      document.querySelector('.score-turn').style.display = "inline-block";
+      // Restart board 
+      document.querySelector('.grid-container').style.display = 'grid';
       boardFields.forEach(field => {
         field.classList.remove('icon-o');
         field.classList.remove('icon-x');
-        })
-      // New board
-      const endScreen = document.querySelector('.grid-container');
-      endScreen.style.display = "grid";
-      boardFields.forEach(field => field.addEventListener("click", pickField));
+      });
+      unlockBoard();
     }
-    restartGame.addEventListener("click", () => {
-      restart();
-    });
+    // ==================== EVENT LISTENERS
+    avatars1.forEach(avatar => avatar.addEventListener('click', pickAvatar1));
+    avatars2.forEach(avatar => avatar.addEventListener('click', pickAvatar2));
+    play.addEventListener("click", run);
+    newGame.addEventListener("click", startNew);
+    restartGame.addEventListener("click", restart);
 
   } // <-- end of init function
 }; // <-- end of web obj.

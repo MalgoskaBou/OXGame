@@ -34,30 +34,30 @@ const web = {
     ];
     let winCombination;
 
-
-    // ==================== FUNCTIONS 
+    // ==================== FUNCTIONS
     // ==================== validation
 
     // Returns true if player name is valid.
-    const validName = function (name) {
-      return (name && name.length >= 3 && name.length <= 10);
+    const validName = function(name) {
+      return name && name.length >= 3 && name.length <= 10;
     };
 
     // Shows alert under invalid player's name.
-    const showNameAlert = function (nameInput) {
+    const showNameAlert = function(nameInput) {
       const playerBox = nameInput.parentNode.parentNode;
-      if (playerBox.querySelector('.alert')) return;
+      if (playerBox.querySelector(".alert")) return;
 
-      const alertBox = document.createElement('div');
-      alertBox.innerHTML = '<p>Enter valid name between 3 and 10 characters.</p>';
-      alertBox.className = 'alert';
+      const alertBox = document.createElement("div");
+      alertBox.innerHTML =
+        "<p>Enter valid name between 3 and 10 characters.</p>";
+      alertBox.className = "alert";
       playerBox.appendChild(alertBox);
     };
 
     // Removes invalid name alert.
-    const clearNameAlert = function (nameInput) {
+    const clearNameAlert = function(nameInput) {
       const playerBox = nameInput.parentNode.parentNode;
-      const alertBox = playerBox.querySelector('.alert');
+      const alertBox = playerBox.querySelector(".alert");
       if (alertBox) playerBox.removeChild(alertBox);
     };
 
@@ -99,10 +99,10 @@ const web = {
       userImg.classList.remove(lastClass);
       userImg.classList.add(e.target.classList.item(1));
 
-      const playerImg1 = document.getElementById('playerOne');
+      const playerImg1 = document.getElementById("playerOne");
       playerImg1.classList.remove(lastClass);
       playerImg1.classList.add(e.target.classList.item(1));
-    }
+    };
 
     //Sets avatar for second player.
     const pickAvatar2 = function (e) {
@@ -111,11 +111,10 @@ const web = {
       userImg.classList.remove(lastClass);
       userImg.classList.add(e.target.classList.item(1));
 
-      const playerImg2 = document.getElementById('playerTwo');
+      const playerImg2 = document.getElementById("playerTwo");
       playerImg2.classList.remove(lastClass);
       playerImg2.classList.add(e.target.classList.item(1));
     };
-
 
     // Sets players names, draws the first turn, navigates to the game board.
     const run = function () {
@@ -123,13 +122,13 @@ const web = {
       if (!validName(p1inp.value)) {
         showNameAlert(p1inp);
         return;
-      };
+      }
       clearNameAlert(p1inp);
       // Check if second name is valid
       if (!validName(p2inp.value)) {
         showNameAlert(p2inp);
         return;
-      };
+      }
       clearNameAlert(p2inp);
       // Display users names
       name1.innerText = p1inp.value;
@@ -145,11 +144,10 @@ const web = {
       unlockBoard();
     };
 
-
     // ==================== game-course
 
     //Changes the turn and displays name of the player to play.
-    const changeTurn = function (e) {
+    const changeTurn = function(e) {
       if (currentTurn) {
         currentTurn--;
         turn.innerHTML = `${p1inp.value}'s turn.`;
@@ -157,7 +155,7 @@ const web = {
         currentTurn++;
         turn.innerHTML = `${p2inp.value}'s turn.`;
       }
-    }
+    };
 
     //Draws line on the game board and shows winning combination.
     const drawLine = function (combination) {
@@ -174,7 +172,7 @@ const web = {
     }
 
     //====================== Ievgeniia
-    //Add symbols on board 
+    //Add symbols on board
     const x = "x";
     const o = "o";
     const empty = null;
@@ -219,38 +217,38 @@ const web = {
     //============== Ievgeniia
     function clickInformation(indexBox, indexPlyerBox) {
       let boardSymbol = empty;
-      if (indexPlyerBox === 'icon-x') {
+      if (indexPlyerBox === "icon-x") {
         boardSymbol = x;
       } else {
         boardSymbol = o;
       }
 
       switch (indexBox) {
-        case 'item-11':
+        case "item-11":
           arrBoard[0][0] = boardSymbol;
           break;
-        case 'item-12':
+        case "item-12":
           arrBoard[0][1] = boardSymbol;
           break;
-        case 'item-13':
+        case "item-13":
           arrBoard[0][2] = boardSymbol;
           break;
-        case 'item-21':
+        case "item-21":
           arrBoard[1][0] = boardSymbol;
           break;
-        case 'item-22':
+        case "item-22":
           arrBoard[1][1] = boardSymbol;
           break;
-        case 'item-23':
+        case "item-23":
           arrBoard[1][2] = boardSymbol;
           break;
-        case 'item-31':
+        case "item-31":
           arrBoard[2][0] = boardSymbol;
           break;
-        case 'item-32':
+        case "item-32":
           arrBoard[2][1] = boardSymbol;
           break;
-        case 'item-33':
+        case "item-33":
           arrBoard[2][2] = boardSymbol;
           break;
       }
@@ -301,6 +299,8 @@ const web = {
     }
 
     //Find matching values
+    let points1 = 0;
+    let points2 = 0;
     function findWinner(results) {
       let counterX = 0;
       let counterO = 0;
@@ -314,9 +314,13 @@ const web = {
       }
 
       if (counterX == 3) {
+        points1++;
+        document.getElementById("player-1-score").innerHTML = points1;
         return x;
       }
       if (counterO == 3) {
+        points2++;
+        document.getElementById("player-2-score").innerHTML = points2;
         return o;
       }
       return empty;
@@ -367,9 +371,9 @@ const web = {
       return empty;
     }
 
+    
     //Find combination for Draw 
     function emptyCellDetected() {
-
       function emptyFieldMatch(element) {
         return element === empty;
       }

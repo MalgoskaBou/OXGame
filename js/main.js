@@ -9,7 +9,9 @@ const web = {
     const avatars1 = document.querySelectorAll('#avatars1');
     const avatars2 = document.querySelectorAll('#avatars2');
     // ==================== SOUNDS
-    const sound = document.querySelector('audio.beep');
+    const soundPlayer1 = document.querySelector('audio.whoomp');
+    const soundPlayer2 = document.querySelector('audio.wheemp');
+    const soundEnd = document.querySelector('audio.tada');
     // ==================== inputs
     const p1inp = document.getElementById("player1Name");
     const p2inp = document.getElementById("player2Name");
@@ -38,12 +40,12 @@ const web = {
     // ==================== validation
 
     // Returns true if player name is valid.
-    const validName = function(name) {
+    const validName = function (name) {
       return name && name.length >= 3 && name.length <= 10;
     };
 
     // Shows alert under invalid player's name.
-    const showNameAlert = function(nameInput) {
+    const showNameAlert = function (nameInput) {
       const playerBox = nameInput.parentNode.parentNode;
       if (playerBox.querySelector(".alert")) return;
 
@@ -55,7 +57,7 @@ const web = {
     };
 
     // Removes invalid name alert.
-    const clearNameAlert = function(nameInput) {
+    const clearNameAlert = function (nameInput) {
       const playerBox = nameInput.parentNode.parentNode;
       const alertBox = playerBox.querySelector(".alert");
       if (alertBox) playerBox.removeChild(alertBox);
@@ -84,12 +86,6 @@ const web = {
     const switchToBoard = function () {
       startScreen.style.display = 'none';
       boardScreen.style.display = 'flex';
-    }
-
-    // Switches to start screen
-    const switchToStart = function () {
-      startScreen.style.display = 'flex';
-      boardScreen.style.display = 'none';
     }
 
     // Sets avatar for the first player.
@@ -147,7 +143,7 @@ const web = {
     // ==================== game-course
 
     //Changes the turn and displays name of the player to play.
-    const changeTurn = function(e) {
+    const changeTurn = function (e) {
       if (currentTurn) {
         currentTurn--;
         turn.innerHTML = `${p1inp.value}'s turn.`;
@@ -188,7 +184,7 @@ const web = {
     // If field is available adds right figure on a board field depending on the current turn.
     const pickField = function (e) {
       if (validField(e.target)) {
-        sound.play();
+        currentTurn ? soundPlayer2.play() : soundPlayer1.play();
         e.target.classList.add(currentTurn ? "icon-o" : "icon-x");
         e.target.classList.remove('unlocked');
 
@@ -203,6 +199,7 @@ const web = {
           player1scoreTxt.innerText = player1score;
           player2scoreTxt.innerText = player2score;
           // Show result
+          soundEnd.play();
           lockBoard();
           drawLine(winCombination);
           setTimeout(() => showWinner(result), 2000);
@@ -301,6 +298,7 @@ const web = {
     //Find matching values
     let points1 = 0;
     let points2 = 0;
+
     function findWinner(results) {
       let counterX = 0;
       let counterO = 0;
@@ -371,7 +369,7 @@ const web = {
       return empty;
     }
 
-    
+
     //Find combination for Draw 
     function emptyCellDetected() {
       function emptyFieldMatch(element) {
@@ -427,7 +425,7 @@ const web = {
       winnerScreen.style.cssText = 'width: 360px; height: auto; margin-bottom: 20%; background: transparent; padding-top: 36px; font-size: 64px; line-height: 75px; font-weight: bold; text-transform: uppercase; color: #FBC375';
     }
 
-//=======================MAGDA
+    //=======================MAGDA
     // new Game function
     const newGame = function () {
       window.location.reload(true);

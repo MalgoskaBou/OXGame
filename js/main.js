@@ -5,12 +5,10 @@ const web = {
     const avatars1 = document.querySelectorAll('#avatars1');
     const avatars2 = document.querySelectorAll('#avatars2');
     // ==================== SOUNDS
-    const avatars2 = document.querySelectorAll('#avatars2');
     const sound = document.querySelector('audio.beep');
     // ==================== inputs
     const p1inp = document.getElementById("player1Name");
     const p2inp = document.getElementById("player2Name");
-    const p1inp = document.getElementById("player1Name") // SOUND
     // ==================== buttons
     const play = document.getElementById("play");
     // ==================== divs
@@ -173,6 +171,7 @@ const web = {
     const pickField = function (e) {
       if (validField(e.target)) {
         e.target.classList.add(currentTurn ? "icon-o" : "icon-x");
+        sound.play(); // SOUND
         //============== Ievgeniia
         let indexBox = e.target.classList.item(1);
         let indexPlyerBox = e.target.classList.item(2);

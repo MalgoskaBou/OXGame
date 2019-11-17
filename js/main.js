@@ -1,6 +1,10 @@
 const web = {
   init: function () {
     // ==================== VARIABLES 
+    const startScreen = document.getElementById("startScreen");
+    const boardScreen = document.getElementById("gameBoard");
+    const boardContainer = document.getElementById('gameGrid');
+    const board = document.querySelector('.grid-container');
     const boardFields = document.querySelectorAll(".item");
     const avatars1 = document.querySelectorAll('#avatars1');
     const avatars2 = document.querySelectorAll('#avatars2');
@@ -11,14 +15,18 @@ const web = {
     const p2inp = document.getElementById("player2Name");
     // ==================== buttons
     const play = document.getElementById("play");
-    // ==================== divs
+    const newGameBtn = document.getElementById("newGame");
+    const restartGameBtn = document.getElementById("restartGame");
+    // ==================== to put text into
     const turn = document.getElementById("turn");
     const name1 = document.querySelector(".player-1-name");
     const name2 = document.querySelector(".player-2-name");
-    const startScreen = document.getElementById("startScreen");
-    const boardScreen = document.getElementById("gameBoard");
+    const player1scoreTxt = document.getElementById("player-1-score");
+    const player2scoreTxt = document.getElementById("player-2-score");
     // ====================
     let currentTurn;
+    let player1score = 0;
+    let player2score = 0;
     const winCombinations = [
       ['012', '345', '678'],
       ['036', '147', '258'],
@@ -55,12 +63,19 @@ const web = {
 
     // Returns true if board field given as an argument is valid.
     const validField = function (field) {
-      return (!field.classList.contains("icon-x") && !field.classList.contains("icon-o"))
+      return (!field.classList.contains('icon-x') && !field.classList.contains('icon-o'))
     };
 
     // Locks game board fields after the end of the game.
     const lockBoard = function () {
-      boardFields.forEach(field => field.removeEventListener("click", pickField));
+      boardFields.forEach(field => field.removeEventListener('click', pickField));
+      boardFields.forEach(field => field.classList.remove('unlocked'));
+    };
+
+    // Locks game board fields after the end of the game.
+    const unlockBoard = function () {
+      boardFields.forEach(field => field.addEventListener("click", pickField));
+      boardFields.forEach(field => field.classList.add('unlocked'));
     };
 
     // ==================== game-start
@@ -104,25 +119,30 @@ const web = {
 
     // Sets players names, draws the first turn, navigates to the game board.
     const run = function () {
+      // Check if first name is valid
       if (!validName(p1inp.value)) {
         showNameAlert(p1inp);
         return;
       };
       clearNameAlert(p1inp);
-
+      // Check if second name is valid
       if (!validName(p2inp.value)) {
         showNameAlert(p2inp);
         return;
       };
       clearNameAlert(p2inp);
-
+      // Display users names
       name1.innerText = p1inp.value;
       name2.innerText = p2inp.value;
-
+      // Draw first turn
       currentTurn = Math.floor(Math.random() * 2);
       turn.innerHTML = `It's ${currentTurn?p2inp.value:p1inp.value}'s turn.`;
-
+      // Display players score
+      player1scoreTxt.innerText = player1score;
+      player2scoreTxt.innerText = player2score;
+      // Navigate to game board
       switchToBoard();
+      unlockBoard();
     };
 
 
@@ -132,10 +152,10 @@ const web = {
     const changeTurn = function (e) {
       if (currentTurn) {
         currentTurn--;
-        turn.innerHTML = `It's ${p1inp.value}'s turn.`;
+        turn.innerHTML = `${p1inp.value}'s turn.`;
       } else {
         currentTurn++;
-        turn.innerHTML = `It's ${p2inp.value}'s turn.`;
+        turn.innerHTML = `${p2inp.value}'s turn.`;
       }
     }
 
@@ -150,7 +170,7 @@ const web = {
 
       setTimeout(() => {
         gameBoard.removeChild(line);
-      }, 1800)
+      }, 2000)
     }
 
     //====================== Ievgeniia
@@ -171,27 +191,26 @@ const web = {
     const pickField = function (e) {
       if (validField(e.target)) {
         e.target.classList.add(currentTurn ? "icon-o" : "icon-x");
-        sound.play(); // SOUND
-        //============== Ievgeniia
-        let indexBox = e.target.classList.item(1);
-        let indexPlyerBox = e.target.classList.item(2);
-        clickInformation(indexBox, indexPlyerBox);
+        e.target.classList.remove('unlocked');
+
+        // Check if game met win or draw
+        const fieldID = e.target.classList[1];
+        const fieldSign = currentTurn ? "icon-o" : "icon-x";
+        clickInformation(fieldID, fieldSign);
         const result = checkBoard();
-        if (result == "x winner") {
+        if (result == "x winner" || result == "o winner") {
+          // Update players score
+          result == 'x winner' ? player1score++ : player2score++;
+          player1scoreTxt.innerText = player1score;
+          player2scoreTxt.innerText = player2score;
+          // Show result
           lockBoard();
-          setTimeout(drawLine(winCombination), 200);
-          setTimeout(showWinnerX, 2000);
-        } else if (result == "o winner") {
+          drawLine(winCombination);
+          setTimeout(() => showWinner(result), 2000);
+        } else if (!emptyCellDetected()) {
           lockBoard();
-          setTimeout(drawLine(winCombination), 200);
-          setTimeout(showWinnerO, 2000);
-        } else {
-          if (!emptyCellDetected()) {
-            lockBoard();
-            setTimeout(showDraw, 2000);
-          }
+          setTimeout(showDraw, 2000);
         }
-        //...........................
         changeTurn();
       }
     };
@@ -348,13 +367,13 @@ const web = {
     }
 
     //Find combination for Draw 
-    function emptyCellDetected(draw) {
+    function emptyCellDetected() {
 
       function emptyFieldMatch(element) {
         return element === empty;
       }
 
-      for (var i = 0; i < 3; i++) {
+      for (let i = 0; i < 3; i++) {
         if (arrBoard[i].findIndex(emptyFieldMatch) !== -1) {
           return true;
         }
@@ -362,58 +381,33 @@ const web = {
       return false;
     }
 
-    //<<<<<<<<<<< WINNER X SCREEN >>>>>>>>>>>
-
-    function showWinnerX(winnerX) {
+    //<<<<<<<<<<< WINNER SCREEN >>>>>>>>>>>
+    function showWinner(winner) {
       //Make game board invisible >>
-      const endScreen = document.querySelector('.grid-container');
-      endScreen.style.display = 'none';
+      board.style.display = 'none';
       //Create a NEW element >>
-      const winnerScreen = document.createElement("div");
-      winnerScreen.setAttribute('id', 'winnerScreen');
-      //Replace new element >> >>
-      //Find Parent element >>
-      var gameGrid = document.getElementById('gameGrid');
-      //Get link on a child element >>
-      var theFirstChildRow = gameGrid.firstChild;
+      const winnerScreen = document.createElement('div');
+      winnerScreen.id = 'winnerScreen';
       //Put a new element before child element >>
-      gameGrid.insertBefore(winnerScreen, theFirstChildRow);
-      //..................................................
-      //Hide Player2 and score / show only winner Player1
-      const hiddenPlayer2 = document.querySelector('.player2-container');
-      hiddenPlayer2.style.display = 'none';
+      boardContainer.insertBefore(winnerScreen, boardContainer.firstChild);
+      //show only winner Player1
+      let hiddenPlayer;
+      if (winner == "x winner") {
+        hiddenPlayer = document.querySelector('.player2-container');
+      } else if (winner == "o winner") {
+        hiddenPlayer = document.querySelector('.player1-container');
+      }
+      hiddenPlayer.style.display = 'none';
       //Hide Score
-      const hiddenScore = document.querySelector('.score-turn');
-      hiddenScore.style.display = 'none';
+      document.querySelector('.score-turn').style.display = 'none';
       //Add inner text to the new 'winnerScreen' element >>
-      winnerScreen.innerHTML = 'Winner!'; // X
+      winnerScreen.innerHTML = 'Winner!';
       //Add styles to the new 'winnerScreen' element >>
       winnerScreen.style.cssText = 'width: 360px; height: auto; margin-bottom: 20%; background: transparent; padding-top: 36px; font-size: 64px; line-height: 75px; font-weight: bold; text-transform: uppercase; color: #FD8328';
     }
 
-    //<<<<<<<<<<< WINNER O SCREEN >>>>>>>>>>
-    function showWinnerO(winnerO) {
-      const endScreen = document.querySelector('.grid-container');
-      endScreen.style.display = 'none';
-
-      const winnerScreen = document.createElement("div");
-      winnerScreen.setAttribute('id', 'winnerScreen');
-
-      var gameGrid = document.getElementById('gameGrid');
-      var theFirstChildRow = gameGrid.firstChild;
-      gameGrid.insertBefore(winnerScreen, theFirstChildRow);
-      //..................................................
-      const hiddenPlayer1 = document.querySelector('.player1-container');
-      hiddenPlayer1.style.display = 'none';
-      const hiddenScore = document.querySelector('.score-turn');
-      hiddenScore.style.display = 'none';
-
-      winnerScreen.innerHTML = 'Winner!';
-      winnerScreen.style.cssText = 'width: 360px; height: auto; margin-bottom: 20%; background: transparent; padding-top: 36px; font-size: 64px; line-height: 75px; font-weight: bold; text-transform: uppercase; color:#B5EAD3';
-    }
-
     //<<<<<<<<<<<< DRAW SCREEN >>>>>>>>>>>
-    function showDraw(draw) {
+    function showDraw() {
       const endScreen = document.querySelector('.grid-container');
       endScreen.style.display = 'none';
 
@@ -434,27 +428,24 @@ const web = {
     avatars1.forEach(avatar => avatar.addEventListener('click', pickAvatar1));
     avatars2.forEach(avatar => avatar.addEventListener('click', pickAvatar2));
     play.addEventListener("click", run);
-    boardFields.forEach(field => field.addEventListener("click", pickField));
 
-    // TO TRZEBA BĘDZIE USUNĄĆ GDY MAGDA DODA SWOJĄ CZĘŚĆ!!
-    // document.getElementById('restartGame').addEventListener('click', switchToStart);
-    // document.getElementById('newGame').addEventListener('click', switchToStart);
+    //=======================MAGDA
 
- //=======================MAGDA
- 
-    // new Game function
-    const startNew = function () {
+    // Add variables
+    const newGame = document.getElementById("newGame");
+    const restartGame = document.getElementById("restartGame");
+
+    // newGame function
+    let startNew = function () {
+      switchToStart();
       window.location.reload(true);
     }
-    // restart Game function
-    let restart = function () {
-      //Restart game conditions
-      arrBoard = [
-        [empty, empty, empty],
-        [empty, empty, empty],
-        [empty, empty, empty]
-      ];
-      result = null;
+
+    newGame.addEventListener("click", startNew);
+
+    // restartGame function 
+
+    function restart() {
       //Unhiding players
       document.querySelector('.player1-container').style.display = 'grid';
       document.querySelector('.player2-container').style.display = 'grid';
@@ -467,8 +458,11 @@ const web = {
       boardFields.forEach(field => {
         field.classList.remove('icon-o');
         field.classList.remove('icon-x');
-      });
-      unlockBoard();
+      })
+      // New board
+      const endScreen = document.querySelector('.grid-container');
+      endScreen.style.display = "grid";
+      boardFields.forEach(field => field.addEventListener("click", pickField));
     }
     // ==================== EVENT LISTENERS
     avatars1.forEach(avatar => avatar.addEventListener('click', pickAvatar1));

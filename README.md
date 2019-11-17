@@ -10,7 +10,7 @@
 * [Features](#features)
 * [Status](#status)
 * [Copyrights](#copyrights)
-* [Contact](#contact)
+* [Authors](#authors)
 
 ## General info
 The purpose of the project was a group work during the CodersCamp bootcamp. Our motivation is to build the very first game and have fun!

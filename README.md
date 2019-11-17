@@ -8,7 +8,6 @@
 * [Setup](#setup)
 * [Features](#features)
 * [Status](#status)
-* [Inspiration](#inspiration)
 * [Contact](#contact)
 
 ## General info
@@ -16,7 +15,8 @@ The purpose of the project was a group work during the CodersCamp bootcamp. Our 
 Add more general information about project. What the purpose of the project is? Motivation?
 
 ## Screenshots
-![Example screenshot](./img/screenshot.png)
+(./img/screenshot1.png)
+(./img/screenshot2.png)
 
 ## Technologies
 * HTML5
@@ -24,27 +24,24 @@ Add more general information about project. What the purpose of the project is? 
 * JavaScript
 
 ## Setup
-Describe how to install / setup your local environement / add link to demo version.
+`git clone https://github.com/MalgoskaBou/OXGame.git`
 
 ## Code Examples
 Show examples of usage:
 `put-your-code-here`
 
 ## Features
-List of features ready and TODOs for future development
-* Awesome feature 1
+List of features:
+* 
 * Awesome feature 2
 * Awesome feature 3
 
 To-do list:
-* Wow improvement to be done 1
-* Wow improvement to be done 2
+* Playing against computer (AI)
+* Animations
 
 ## Status
-Project is: _in progress_, _finished_, _no longer continue_ and why?
-
-## Inspiration
-Add here credits. Project inspired by..., based on...
+Project is: _finished_.
 
 ## Contact
 Created by CodersCamp's members under the supervision of Małgorzata Bousoltane.

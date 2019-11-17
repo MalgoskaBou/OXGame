@@ -367,5 +367,9 @@ label:focus,
 }
 
 .item:hover {
+    cursor: default;
+}
+
+.unlocked .item:hover {
     background-color: #447B80;
 }

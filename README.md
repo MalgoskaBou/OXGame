@@ -16,8 +16,7 @@
 The purpose of the project was a group work during the CodersCamp bootcamp. Our motivation is to build the very first game and have fun!
 
 ## Screenshots
-![Screenshot](https://github.com/MalgoskaBou/OXGame/blob/dev/img/screenshot1.png)
-![Screenshot](https://github.com/MalgoskaBou/OXGame/blob/dev/img/screenshot2.png)
+![Screenshot](./img/screenshot.png)
 
 ## Technologies
 * HTML5
@@ -25,7 +24,7 @@ The purpose of the project was a group work during the CodersCamp bootcamp. Our 
 * JavaScript
 
 ## Demo
-Demo version avalible here: https://dariaka.github.io/OXGame/
+Demo version available here: https://dariaka.github.io/OXGame/
 Have fun! :)
 
 ## How to play

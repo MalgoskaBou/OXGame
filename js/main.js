@@ -1,6 +1,9 @@
 const web = {
   init: function () {
     // ==================== VARIABLES 
+    const startScreen = document.getElementById("startScreen");
+    const boardScreen = document.getElementById("gameBoard");
+    const board = document.querySelector(".grid-container");
     const boardFields = document.querySelectorAll(".item");
     const avatars1 = document.querySelectorAll('#avatars1');
     const avatars2 = document.querySelectorAll('#avatars2');
@@ -9,12 +12,10 @@ const web = {
     const p2inp = document.getElementById("player2Name");
     // ==================== buttons
     const play = document.getElementById("play");
-    // ==================== divs
+    // ==================== to put text into
     const turn = document.getElementById("turn");
     const name1 = document.querySelector(".player-1-name");
     const name2 = document.querySelector(".player-2-name");
-    const startScreen = document.getElementById("startScreen");
-    const boardScreen = document.getElementById("gameBoard");
     // ====================
     let currentTurn;
     const winCombinations = [
@@ -59,6 +60,13 @@ const web = {
     // Locks game board fields after the end of the game.
     const lockBoard = function () {
       boardFields.forEach(field => field.removeEventListener("click", pickField));
+      board.classList.remove('unlocked');
+    };
+
+    // Locks game board fields after the end of the game.
+    const unlockBoard = function () {
+      boardFields.forEach(field => field.addEventListener("click", pickField));
+      board.classList.add('unlocked');
     };
 
     // ==================== game-start
@@ -121,6 +129,7 @@ const web = {
       turn.innerHTML = `It's ${currentTurn?p2inp.value:p1inp.value}'s turn.`;
 
       switchToBoard();
+      unlockBoard();
     };
 
 
@@ -431,20 +440,15 @@ const web = {
     avatars1.forEach(avatar => avatar.addEventListener('click', pickAvatar1));
     avatars2.forEach(avatar => avatar.addEventListener('click', pickAvatar2));
     play.addEventListener("click", run);
-    boardFields.forEach(field => field.addEventListener("click", pickField));
 
-    // TO TRZEBA BĘDZIE USUNĄĆ GDY MAGDA DODA SWOJĄ CZĘŚĆ!!
-    // document.getElementById('restartGame').addEventListener('click', switchToStart);
-    // document.getElementById('newGame').addEventListener('click', switchToStart);
-
-        //=======================MAGDA
+    //=======================MAGDA
 
     // Add variables
     const newGame = document.getElementById("newGame");
     const restartGame = document.getElementById("restartGame");
 
     // newGame function
-      let startNew = function () {
+    let startNew = function () {
       switchToStart();
       window.location.reload(true);
     }
@@ -453,7 +457,7 @@ const web = {
 
     // restartGame function 
 
-    function restart () {
+    function restart() {
       //Unhiding players
       const hiddenPlayer2 = document.querySelector('.player2-container');
       hiddenPlayer2.style.display = 'grid';
@@ -468,7 +472,7 @@ const web = {
       boardFields.forEach(field => {
         field.classList.remove('icon-o');
         field.classList.remove('icon-x');
-        })
+      })
       // New board
       const endScreen = document.querySelector('.grid-container');
       endScreen.style.display = "grid";

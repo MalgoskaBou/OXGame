@@ -12,11 +12,10 @@
 
 ## General info
 The purpose of the project was a group work during the CodersCamp bootcamp. Our motivation is to build the very first game and have fun!
-Add more general information about project. What the purpose of the project is? Motivation?
 
 ## Screenshots
-(./img/screenshot1.png)
-(./img/screenshot2.png)
+![Screenshot](https://github.com/MalgoskaBou/OXGame/blob/dev/img/screenshot1.png)
+![Screenshot](https://github.com/MalgoskaBou/OXGame/blob/dev/img/screenshot2.png)
 
 ## Technologies
 * HTML5

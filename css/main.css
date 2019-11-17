@@ -60,6 +60,10 @@ body {
     width: 100%;
 }
 
+#gameBoard {
+    display: none;
+}
+
 @media screen and (min-width: 441px) {
     #gameBoard {
         width: 400px;
@@ -284,44 +288,76 @@ label:focus,
 .combination-012 {
     top: calc((100% - 80px)/6 + 30px);
     transform: translate(-50%, -50%);
+    animation: slide-center 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1;
 }
 
 .combination-345 {
-    transform: translate(-50%, calc(-50%));
+    transform: translate(-50%, -50%);
+    animation: slide-center 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1;
 }
 
 .combination-678 {
     top: calc(100% - (100% - 80px)/6 - 30px);
     transform: translate(-50%, -50%);
+    animation: slide-center 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1;
 }
 
 .combination-036 {
     left: calc((100% - 50px)/6 + 15px);
     transform: translate(-50%, -50%) rotate(90deg);
+    animation: slide-center 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1;
 }
 
 .combination-147 {
     transform: translate(-50%, calc(-50%)) rotate(90deg);
+    animation: slide-center 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1;
 }
 
 .combination-258 {
     left: calc(100% - (100% - 50px)/6 - 15px);
     transform: translate(-50%, -50%) rotate(90deg);
+    animation: slide-center 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1;
 }
 
 .combination-048 {
     transform: translate(-50%, -50%) rotate(45deg) scaleX(1.414);
+    animation: slide-center 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1;
 }
 
 .combination-246 {
     transform: translate(-50%, -50%) rotate(-45deg) scaleX(1.414);
+    animation: slide-center 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1;
 }
+
+@keyframes slide-center {
+    0% {
+        opacity: 0;
+        width: 0;
+    }
+
+    20% {
+        opacity: 0;
+        width: 0;
+    }
+
+    100% {
+        opacity: 1;
+        width: 85%;
+    }
+}
+
 
 @media only screen and (max-width: 768px) {
 
     /* For mobile phones */
     [class*="col-"] {
         width: 100%;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        padding: 10% 0;
     }
 }
 
@@ -336,5 +372,10 @@ label:focus,
 }
 
 .item:hover {
+    cursor: default;
+}
+
+.unlocked:hover {
+    cursor: pointer;
     background-color: #447B80;
 }

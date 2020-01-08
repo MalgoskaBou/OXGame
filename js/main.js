@@ -12,6 +12,11 @@ const web = {
     const soundPlayer1 = document.querySelector('audio.whoomp');
     const soundPlayer2 = document.querySelector('audio.wheemp');
     const soundEnd = document.querySelector('audio.tada');
+
+    soundPlayer1.currentTime = 0;
+    soundPlayer2.currentTime = 0;
+    soundEnd.currentTime = 0;
+    
     // ==================== inputs
     const p1inp = document.getElementById("player1Name");
     const p2inp = document.getElementById("player2Name");

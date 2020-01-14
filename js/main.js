@@ -12,6 +12,7 @@ const web = {
     const soundPlayer1 = document.querySelector('audio.whoomp');
     const soundPlayer2 = document.querySelector('audio.wheemp');
     const soundEnd = document.querySelector('audio.tada');
+    
     // ==================== inputs
     const p1inp = document.getElementById("player1Name");
     const p2inp = document.getElementById("player2Name");
@@ -185,6 +186,8 @@ const web = {
     const pickField = function (e) {
       if (validField(e.target)) {
         currentTurn ? soundPlayer2.play() : soundPlayer1.play();
+        soundPlayer1.currentTime = 0;
+        soundPlayer2.currentTime = 0;
         e.target.classList.add(currentTurn ? "icon-o" : "icon-x");
         e.target.classList.remove('unlocked');
 
@@ -200,6 +203,7 @@ const web = {
           player2scoreTxt.innerText = player2score;
           // Show result
           soundEnd.play();
+          soundEnd.currentTime = 0;
           lockBoard();
           drawLine(winCombination);
           setTimeout(() => showWinner(result), 2000);

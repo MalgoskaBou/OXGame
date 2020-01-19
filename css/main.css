@@ -13,6 +13,7 @@ body {
     font-weight: bold;
     text-transform: uppercase;
     padding-bottom: 5%;
+    cursor: default;
 }
 
 .row {
@@ -31,6 +32,7 @@ body {
     color: #FFFFFF;
     width: 100%;
     font-size: 0.85rem;
+    text-transform: uppercase;
 }
 
 .btn-play {
@@ -45,9 +47,19 @@ body {
     background-color: #FD8328;
 }
 
+.btn-play:hover,
+.btn-restart:hover {
+    background-color: #FF9A50;
+}
+
+.btn-new-game:hover {
+    background-color: #3E4255;
+}
+
 .new-game-description {
     padding-top: 5px;
     font-size: 0.8rem;
+    cursor: default;
 }
 
 #startScreen,
@@ -62,12 +74,6 @@ body {
 
 #gameBoard {
     display: none;
-}
-
-@media screen and (min-width: 441px) {
-    #gameBoard {
-        width: 400px;
-    }
 }
 
 #gameGrid {
@@ -88,18 +94,8 @@ body {
     align-items: center;
     justify-content: center;
     border-radius: 8px;
-
     background-color: #254a54;
     background-size: contain;
-}
-
-.grid-container .item {
-    display: flex;
-    background-color: #276268;
-    height: 100%;
-    width: 100%;
-    border-radius: 8px;
-
 }
 
 .item,
@@ -109,7 +105,24 @@ body {
 }
 
 .item {
+    display: flex;
+    background-color: #276268;
+    height: 100%;
+    width: 100%;
+    border-radius: 8px;
+}
+
+.item {
     cursor: pointer;
+}
+
+.item:hover {
+    cursor: default;
+}
+
+.item.unlocked:hover {
+    cursor: pointer;
+    background-color: #447B80;
 }
 
 .icon-o {
@@ -143,6 +156,7 @@ body {
     text-align: left;
     padding-left: 5%;
     color: #FBC375;
+    cursor: default;
 }
 
 .grid-container-two {
@@ -158,8 +172,24 @@ body {
     border: 1px solid #D0D0D0;
     border-radius: 100%;
     margin: 5% 0;
+    background-size: 70%;
     background-repeat: no-repeat;
     background-position: center;
+}
+
+.player-1-avatar {
+    background-image: url(../img/shrimp.svg);
+    cursor: default;
+}
+
+.player-2-avatar {
+    background-image: url(../img/cat.svg);
+    cursor: default;
+}
+
+.avatars1, .avatars2 {
+    display: flex;
+    justify-content: space-between;
 }
 
 .avatars .avatar:hover,
@@ -170,10 +200,35 @@ body {
     cursor: pointer;
 }
 
+.avatar-1 {
+    background-image: url(../img/shrimp.svg);
+}
+
+.avatar-2 {
+    background-image: url(../img/unicorn.svg);
+}
+
+.avatar-3 {
+    background-image: url(../img/fish.svg);
+}
+
+.avatar-4 {
+    background-image: url(../img/cat.svg);
+}
+
+.avatar-5 {
+    background-image: url(../img/dog.svg);
+}
+
+.avatar-6 {
+    background-image: url(../img/mouse.svg);
+}
+
 #score {
     color: #b5ead3;
     font-weight: bold;
     font-size: 1.1rem;
+    cursor: default;
 }
 
 .player-container {
@@ -182,21 +237,6 @@ body {
     max-width: 350px;
     padding-bottom: 20%;
     font-size: 0.8rem;
-}
-
-@media screen and (min-width: 768px) {
-    #player1.player-container {
-        justify-content: left;
-    }
-
-    #player2.player-container {
-        justify-content: right;
-    }
-}
-
-.avatars {
-    display: flex;
-    justify-content: space-between;
 }
 
 input {
@@ -231,36 +271,6 @@ label:focus,
     text-align: left;
 }
 
-.avatar-1 {
-    background-image: url(../img/shrimp.svg);
-    background-size: 70%;
-}
-
-.avatar-2 {
-    background-image: url(../img/unicorn.svg);
-    background-size: 70%;
-}
-
-.avatar-3 {
-    background-image: url(../img/fish.svg);
-    background-size: 70%;
-}
-
-.avatar-4 {
-    background-image: url(../img/cat.svg);
-    background-size: 70%;
-}
-
-.avatar-5 {
-    background-image: url(../img/dog.svg);
-    background-size: 70%;
-}
-
-.avatar-6 {
-    background-image: url(../img/mouse.svg);
-    background-size: 70%;
-}
-
 .alert {
     position: absolute;
     top: 150px;
@@ -270,6 +280,33 @@ label:focus,
     padding: 0;
     text-align: left;
     color: #FD8328;
+    cursor: default;
+}
+
+.winnerScreen {
+    width: 360px; 
+    height: auto; 
+    margin-bottom: 20%; 
+    background: transparent; 
+    padding-top: 36px; 
+    font-size: 64px; 
+    line-height: 75px; 
+    font-weight: bold; 
+    text-transform: uppercase; 
+    color: #FD8328;
+}
+
+.drawScreen {
+    width: 360px; 
+    height: auto; 
+    margin-bottom: 20%; 
+    background: transparent; 
+    padding-top: 36px; 
+    font-size: 64px; 
+    line-height: 75px; 
+    font-weight: bold; 
+    text-transform: uppercase; 
+    color: #FBC375
 }
 
 .winning-line {
@@ -346,10 +383,23 @@ label:focus,
     }
 }
 
+@media screen and (min-width: 441px) {
+    #gameBoard {
+        width: 400px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .player1-container {
+        justify-content: left;
+    }
+
+    .player2-container {
+        justify-content: right;
+    }
+}
 
 @media only screen and (max-width: 768px) {
-
-    /* For mobile phones */
     [class*="col-"] {
         width: 100%;
     }
@@ -359,23 +409,4 @@ label:focus,
         justify-content: center;
         padding: 10% 0;
     }
-}
-
-.btn-play:hover,
-.btn-restart:hover {
-    background-color: #FF9A50;
-
-}
-
-.btn-new-game:hover {
-    background-color: #3E4255;
-}
-
-.item:hover {
-    cursor: default;
-}
-
-.unlocked:hover {
-    cursor: pointer;
-    background-color: #447B80;
 }

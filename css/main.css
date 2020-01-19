@@ -13,6 +13,7 @@ body {
     font-weight: bold;
     text-transform: uppercase;
     padding-bottom: 5%;
+    cursor: default;
 }
 
 .row {
@@ -58,6 +59,7 @@ body {
 .new-game-description {
     padding-top: 5px;
     font-size: 0.8rem;
+    cursor: default;
 }
 
 #startScreen,
@@ -154,6 +156,7 @@ body {
     text-align: left;
     padding-left: 5%;
     color: #FBC375;
+    cursor: default;
 }
 
 .grid-container-two {
@@ -174,11 +177,17 @@ body {
     background-position: center;
 }
 
-.player-1-avatar, .player-2-avatar {
+.player-1-avatar {
+    background-image: url(../img/shrimp.svg);
     cursor: default;
 }
 
-.avatars {
+.player-2-avatar {
+    background-image: url(../img/cat.svg);
+    cursor: default;
+}
+
+.avatars1, .avatars2 {
     display: flex;
     justify-content: space-between;
 }
@@ -219,6 +228,7 @@ body {
     color: #b5ead3;
     font-weight: bold;
     font-size: 1.1rem;
+    cursor: default;
 }
 
 .player-container {
@@ -270,6 +280,7 @@ label:focus,
     padding: 0;
     text-align: left;
     color: #FD8328;
+    cursor: default;
 }
 
 .winnerScreen {

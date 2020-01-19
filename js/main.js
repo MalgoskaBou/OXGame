@@ -5,8 +5,8 @@ const web = {
 		const boardContainer = document.getElementById('gameGrid');
 		const board = document.querySelector('.grid-container');
 		const boardFields = document.querySelectorAll('.item');
-		const avatars1 = document.querySelectorAll('#avatars1');
-		const avatars2 = document.querySelectorAll('#avatars2');
+		const avatars1 = document.querySelectorAll('.avatars1 .avatar');
+		const avatars2 = document.querySelectorAll('.avatars2 .avatar');
 		const player1OnBoard = document.querySelector('.player1-container');
 		const player2OnBoard = document.querySelector('.player2-container');
 		const scoreOnBoard = document.querySelector('.score-turn');
@@ -76,6 +76,13 @@ const web = {
 				field.classList.remove('icon-o');
 				field.classList.remove('icon-x');
 			});
+			player1OnBoard.style.display = 'grid';
+			player2OnBoard.style.display = 'grid';
+			scoreOnBoard.style.display = 'flex';
+			const winAlert = document.querySelector('.winnerScreen');
+			if (winAlert) winAlert.remove();
+			const drawAlert = document.querySelector('.drawScreen');
+			if (drawAlert) drawAlert.remove();
 		}
 
 
@@ -91,6 +98,12 @@ const web = {
 		};
 
 
+		const switchToStart = function() {
+			startScreen.style.display = 'flex';
+			boardScreen.style.display = 'none';
+		};
+
+
 		const drawTurn = function() {
 			currentTurn = Boolean(Math.floor(Math.random() * 2));
 			turn.innerHTML = `${currentTurn ? p2inp.value : p1inp.value}'s turn.`;
@@ -102,30 +115,20 @@ const web = {
 			turn.innerHTML = `${currentTurn ? p2inp.value : p1inp.value}'s turn.`;
 		};
 
-		// xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
 		const pickAvatar1 = function(e) {
-			const userImg = document.getElementById('player-1-avatar');
-			const lastClass = userImg.classList.item(2);
-			userImg.classList.remove(lastClass);
-			userImg.classList.add(e.target.classList.item(1));
-
-			const playerImg1 = document.getElementById('playerOne');
-			playerImg1.classList.remove(lastClass);
-			playerImg1.classList.add(e.target.classList.item(1));
+			const imgSrc = getComputedStyle(e.target).backgroundImage;
+			const userAvatar = document.getElementById('player-1-avatar');
+			userAvatar.style.backgroundImage = imgSrc;
 		};
 
-		//Sets avatar for second player.
+
 		const pickAvatar2 = function(e) {
-			const userImg = document.getElementById('player-2-avatar');
-			const lastClass = userImg.classList.item(2);
-			userImg.classList.remove(lastClass);
-			userImg.classList.add(e.target.classList.item(1));
-
-			const playerImg2 = document.getElementById('playerTwo');
-			playerImg2.classList.remove(lastClass);
-			playerImg2.classList.add(e.target.classList.item(1));
+			const imgSrc = getComputedStyle(e.target).backgroundImage;
+			const userAvatar = document.getElementById('player-2-avatar');
+			userAvatar.style.backgroundImage = imgSrc;
 		};
-		// xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
 
 		const run = function() {
 			if (!validName(p1inp.value)) {
@@ -142,9 +145,9 @@ const web = {
 
 			name1.innerText = p1inp.value;
 			name2.innerText = p2inp.value;
-			drawTurn();
 			player1scoreTxt.innerText = player1score;
 			player2scoreTxt.innerText = player2score;
+			drawTurn();
 			switchToBoard();
 			unlockBoard();
 		};
@@ -197,7 +200,6 @@ const web = {
 			board.style.display = 'none';
 			scoreOnBoard.style.display = 'none';
 			winner === 'win-X' ? player2OnBoard.style.display = 'none' : player1OnBoard.style.display = 'none';
-
 			const winnerScreen = document.createElement('div');
 			winnerScreen.className = 'winnerScreen';
 			winnerScreen.innerHTML = 'Winner!';
@@ -215,21 +217,19 @@ const web = {
 
 
 		const newGame = function() {
-			window.location.reload(true);
+			restartBoard();
+			switchToStart();
+			player1score, player2score = 0;
+			name1.innerText, name2.innerText = '';
+			p1inp.value = '';
+			p2inp.value = '';
 		};
 
 		
 		const restartGame = function() {
-			player1OnBoard.style.display = 'grid';
-			player2OnBoard.style.display = 'grid';
-			scoreOnBoard.style.display = 'flex';
-			const winAlert = document.querySelector('.winnerScreen');
-			if (winAlert) winAlert.remove();
-			const drawAlert = document.querySelector('.drawScreen');
-			if (drawAlert) drawAlert.remove();
-			drawTurn();
 			restartBoard();
 			unlockBoard();
+			drawTurn();
         };
         
 
@@ -246,9 +246,13 @@ const web = {
 				lockBoard();
 				drawLine(result[1]);
 				soundEnd.play();
-				result[0]==='win-X' ? player1score++ : player2score++;
-				player1scoreTxt.innerText = player1score;
-				player2scoreTxt.innerText = player2score;
+				if (result[0] === 'win-X') {
+					player1score++;
+					player1scoreTxt.innerText = player1score;
+				}  else {
+					player2score++;
+					player2scoreTxt.innerText = player2score;
+				}
 				setTimeout(() => {
 					showWinner(result[0]);
 				}, 2000);

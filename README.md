@@ -24,12 +24,11 @@ The purpose of the project was a group work during the CodersCamp bootcamp. Our 
 * JavaScript
 
 ## Demo
-Demo version available here: https://dariaka.github.io/OXGame/
+Demo version available [here](https://dariaka.github.io/OXGame/)
 Have fun! :)
 
 ## How to play
-Just kidding, everyone knows that, right? Right? ;)
-https://www.youtube.com/watch?v=ub6FIPpojoI
+Just kidding, everyone knows that, right? [Right?](https://www.youtube.com/watch?v=ub6FIPpojoI) ;)
 
 ## Features
 What we managed to achive:
@@ -48,7 +47,7 @@ To-do list:
 * Animations
 
 ## Status
-Project is: _in progress_.
+Project is: _finished_.
 
 ## Copyrights
 All icons used in project as avatars are made by Freepik (come from https://www.flaticon.com/).

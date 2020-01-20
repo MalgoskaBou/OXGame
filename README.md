@@ -24,7 +24,7 @@ The purpose of the project was a group work during the CodersCamp bootcamp. Our 
 * JavaScript
 
 ## Demo
-Demo version available [here](https://dariaka.github.io/OXGame/)
+Demo version available [here](https://dariaka.github.io/OXGame/).
 Have fun! :)
 
 ## How to play
@@ -55,10 +55,10 @@ Audio files used in project come from http://soundbible.com/
 * Ta Da-SoundBible.com-1884170640 - recorded by Mike Koenig -  Attribution 3.0
 
 ## Authors
-Created by CodersCamp's members under the supervision of [@Małgorzata Bousoltane](https://github.com/MalgoskaBou):
-[@Ievgeniia Abdulina](https://github.com/IevgeniiaAbdulina)
-[@Iwona](https://github.com/Crazysh8)
-[@Daria Kawalec](https://github.com/dariaka)
-[@Olimpia Kwiecień](https://github.com/kvviecien)
-[@OMagdalena Szczech](https://github.com/magdalenaszczech)
+Created by CodersCamp's members under the supervision of [@Małgorzata Bousoltane](https://github.com/MalgoskaBou):<br/>
+[@Ievgeniia Abdulina](https://github.com/IevgeniiaAbdulina)<br/>
+[@Iwona](https://github.com/Crazysh8)<br/>
+[@Daria Kawalec](https://github.com/dariaka)<br/>
+[@Olimpia Kwiecień](https://github.com/kvviecien)<br/>
+[@Magdalena Szczech](https://github.com/magdalenaszczech)<br/>
 [@Piotr Wolniak](https://github.com/PiotrWolniak)

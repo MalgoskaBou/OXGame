@@ -35,14 +35,12 @@ What we managed to achive:
 * Switching between start and board screen.
 * Board fields lock after putting a sign on them.
 * The game board locks itself after win or draw.
+* Use Local Storage to information about last three games.
 * Our app is responsive.
 * It works and looks nice :)
 
-To-do list:
-* Code refactoring.
+Ideas on how to make our app even better:
 * Add more sound effects and button to switch off/on sound.
-* Use Local Storage to keep players names and score.
-* Display information about last three games.
 * Playing against computer (AI)
 * Animations
 
@@ -57,7 +55,7 @@ Audio files used in project come from http://soundbible.com/
 * Ta Da-SoundBible.com-1884170640 - recorded by Mike Koenig -  Attribution 3.0
 
 ## Authors
-Created by CodersCamp's members under the supervision of Małgorzata Bousoltane:
+Created by CodersCamp's members under the supervision of [@Małgorzata Bousoltane](https://github.com/MalgoskaBou):
 [@Ievgeniia Abdulina](https://github.com/IevgeniiaAbdulina)
 [@Iwona](https://github.com/Crazysh8)
 [@Daria Kawalec](https://github.com/dariaka)
